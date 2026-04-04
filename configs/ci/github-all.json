@@ -1,0 +1,27 @@
+{
+  "id": "github-all",
+  "name": "GitHub MCP Server (all toolsets)",
+  "vendor": "GitHub",
+  "category": "Source Control",
+  "repoUrl": "https://github.com/github/github-mcp-server",
+  "version": "${MCP_SERVER_VERSION}",
+  "releasedAt": "${MCP_RELEASED_AT}",
+  "status": "measured",
+  "transport": {
+    "command": "docker",
+    "args": [
+      "run",
+      "-i",
+      "--rm",
+      "-e",
+      "GITHUB_PERSONAL_ACCESS_TOKEN",
+      "-e",
+      "GITHUB_TOOLSETS",
+      "ghcr.io/github/github-mcp-server:${GITHUB_MCP_IMAGE_TAG}"
+    ],
+    "env": {
+      "GITHUB_PERSONAL_ACCESS_TOKEN": "${GITHUB_PERSONAL_ACCESS_TOKEN:-ci-dummy-token}",
+      "GITHUB_TOOLSETS": "all"
+    }
+  }
+}

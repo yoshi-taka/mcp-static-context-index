@@ -1,0 +1,17 @@
+{
+  "id": "pagerduty",
+  "name": "PagerDuty MCP Server",
+  "vendor": "PagerDuty",
+  "category": "Incident Response",
+  "repoUrl": "https://github.com/PagerDuty/pagerduty-mcp-server",
+  "version": "0.15.1",
+  "releasedAt": "2026-03-12",
+  "status": "measured",
+  "transport": {
+    "command": "uvx",
+    "args": ["pagerduty-mcp"],
+    "env": {
+      "PAGERDUTY_USER_API_KEY": "replace-me"
+    }
+  }
+}

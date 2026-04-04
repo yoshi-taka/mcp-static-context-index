@@ -1,0 +1,609 @@
+---
+import "../styles/global.css";
+import benchmarks from "../../data/benchmarks.json";
+
+type BenchmarkVersion = {
+  version: string;
+  releasedAt: string;
+  toolCount: number;
+  totals: {
+    staticTokens: number;
+    instructionsTokens: number;
+    toolNameTokens: number;
+    toolDescriptionTokens: number;
+    inputSchemaTokens: number;
+    promptTokens: number;
+    resourceTokens?: number;
+  };
+  heavyTools: Array<{
+    name: string;
+    tokens: number;
+  }>;
+  notes: string;
+};
+
+type BenchmarkServer = {
+  id: string;
+  name: string;
+  vendor: string;
+  category: string;
+  repoUrl: string;
+  status: string;
+  history: BenchmarkVersion[];
+};
+
+type RankedServer = {
+  server: BenchmarkServer;
+  current: BenchmarkVersion;
+  previous: BenchmarkVersion | null;
+  metrics: ReturnType<typeof computeMetrics>;
+  previousMetrics: ReturnType<typeof computeMetrics> | null;
+};
+
+const formatNumber = new Intl.NumberFormat("en-US");
+const formatPercent = new Intl.NumberFormat("en-US", {
+  style: "percent",
+  minimumFractionDigits: 0,
+  maximumFractionDigits: 0
+});
+
+function ratio(part: number, total: number) {
+  if (!Number.isFinite(part) || !Number.isFinite(total) || total <= 0) return 0;
+  return part / total;
+}
+
+function latest(history: BenchmarkVersion[]) {
+  return [...history].sort((a, b) => new Date(b.releasedAt).getTime() - new Date(a.releasedAt).getTime())[0];
+}
+
+function previous(history: BenchmarkVersion[]) {
+  return [...history].sort((a, b) => new Date(b.releasedAt).getTime() - new Date(a.releasedAt).getTime())[1] ?? null;
+}
+
+function computeMetrics(version: BenchmarkVersion) {
+  const { totals, toolCount } = version;
+  const staticTokens = totals.staticTokens;
+  const toolAverage = toolCount > 0 ? staticTokens / toolCount : null;
+  const schemaShare = ratio(totals.inputSchemaTokens, staticTokens);
+  const descriptionShare = ratio(totals.toolDescriptionTokens, staticTokens);
+  const instructionsShare = ratio(totals.instructionsTokens, staticTokens);
+  const heavyThree = ratio(version.heavyTools.reduce((sum, tool) => sum + tool.tokens, 0), staticTokens);
+
+  return {
+    staticTokens,
+    toolAverage,
+    schemaShare,
+    descriptionShare,
+    instructionsShare,
+    heavyThree
+  };
+}
+
+function changeLabel(current: ReturnType<typeof computeMetrics>, previousMetrics: ReturnType<typeof computeMetrics> | null) {
+  if (!previousMetrics) return "New";
+  const delta = current.staticTokens - previousMetrics.staticTokens;
+  if (delta === 0) return "Flat";
+  return delta < 0 ? `${formatNumber.format(Math.abs(delta))} lower` : `${formatNumber.format(delta)} higher`;
+}
+
+function trendClass(current: ReturnType<typeof computeMetrics>, previousMetrics: ReturnType<typeof computeMetrics> | null) {
+  if (!previousMetrics) return "neutral";
+  const delta = current.staticTokens - previousMetrics.staticTokens;
+  if (delta < 0) return "good";
+  if (delta > 0) return "bad";
+  return "neutral";
+}
+
+function formatToolAverage(value: number | null) {
+  if (value === null) return "N/A";
+  return formatNumber.format(Math.round(value));
+}
+
+const ranked: RankedServer[] = (benchmarks.servers as BenchmarkServer[])
+  .map((server) => {
+    const current = latest(server.history);
+    const previousVersion = previous(server.history);
+    return {
+      server,
+      current,
+      previous: previousVersion,
+      metrics: computeMetrics(current),
+      previousMetrics: previousVersion ? computeMetrics(previousVersion) : null
+    };
+  })
+  .sort((a, b) => b.metrics.staticTokens - a.metrics.staticTokens);
+
+const measured = ranked.filter((entry) => entry.server.status === "measured");
+const featuredMeasured = [...measured].sort((a, b) => b.metrics.staticTokens - a.metrics.staticTokens)[0] ?? null;
+const heaviestMeasured = [...measured].sort((a, b) => b.metrics.staticTokens - a.metrics.staticTokens)[0] ?? null;
+const leanestMeasured = [...measured].sort((a, b) => a.metrics.staticTokens - b.metrics.staticTokens)[0] ?? null;
+const githubVariants = measured
+  .filter((entry) => entry.server.vendor === "GitHub")
+  .sort((a, b) => a.metrics.staticTokens - b.metrics.staticTokens);
+const topHeaviest = [...measured].sort((a, b) => b.metrics.staticTokens - a.metrics.staticTokens).slice(0, 3);
+const topLeanest = [...measured].sort((a, b) => a.metrics.staticTokens - b.metrics.staticTokens).slice(0, 3);
+const topSchemaHeavy = [...measured].sort((a, b) => b.metrics.schemaShare - a.metrics.schemaShare).slice(0, 3);
+const awsFamily = measured.filter((entry) => entry.server.id.startsWith("aws-")).sort((a, b) => a.metrics.staticTokens - b.metrics.staticTokens);
+const improved = ranked.filter(
+  (entry) => entry.previousMetrics && entry.metrics.staticTokens < entry.previousMetrics.staticTokens
+).length;
+const highest = ranked[0] ?? null;
+const lowest = ranked[ranked.length - 1] ?? null;
+const measuredCount = benchmarks.servers.filter((server) => server.status === "measured").length;
+const demoCount = benchmarks.servers.length - measuredCount;
+const canonicalUrl = Astro.site ? new URL(Astro.url.pathname, Astro.site).toString() : null;
+const socialCardUrl = Astro.site ? new URL("/social-card.svg", Astro.site).toString() : null;
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>MCP Static Context Index</title>
+    <meta name="description" content="Public benchmark of MCP server static context footprint. Compare heavy and lean MCP servers, schema-heavy definitions, and vendor configuration tradeoffs." />
+    <meta name="theme-color" content="#182126" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    {canonicalUrl && <link rel="canonical" href={canonicalUrl} />}
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="MCP Static Context Index" />
+    <meta property="og:description" content="Measure static exposure. Compare the heaviest servers. Show which vendors actually reduce context." />
+    {canonicalUrl && <meta property="og:url" content={canonicalUrl} />}
+    {socialCardUrl && <meta property="og:image" content={socialCardUrl} />}
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="MCP Static Context Index" />
+    <meta name="twitter:description" content="Public benchmark of MCP server static context footprint." />
+    {socialCardUrl && <meta name="twitter:image" content={socialCardUrl} />}
+  </head>
+  <body>
+    <main class="page-shell">
+      <section class="hero">
+        <p class="eyebrow">Static Context Benchmark</p>
+        <h1>MCP Static Context Index</h1>
+        <p class="lede">
+          Enterprise MCP servers are compared by one standard: how much static context they force into the room.
+        </p>
+        <div class="hero-grid">
+          <article class="hero-card">
+            <span class="hero-label">Benchmark</span>
+            <strong>Compare MCP servers on static context cost.</strong>
+            <p>Track total footprint, identify heavy definitions, and show release-over-release movement.</p>
+          </article>
+          <article class="hero-card">
+            <span class="hero-label">Method</span>
+            <strong>Static exposure only.</strong>
+            <p>Instructions, tool descriptions, input schemas, prompts, and heavy tool concentration are scored consistently.</p>
+          </article>
+          <article class="hero-card">
+            <span class="hero-label">Output</span>
+            <strong>Published as a benchmark index.</strong>
+            <p>The site is the primary artifact, with measured snapshots underneath it.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="summary-strip">
+        <article class="strip-card">
+          <span class="strip-label">Servers tracked</span>
+          <strong>{formatNumber.format(ranked.length)}</strong>
+        </article>
+        <article class="strip-card">
+          <span class="strip-label">Improved latest release</span>
+          <strong>{formatNumber.format(improved)}</strong>
+        </article>
+        <article class="strip-card">
+          <span class="strip-label">Lowest static tokens</span>
+          <strong>{lowest?.server.name ?? "No data"}</strong>
+        </article>
+        <article class="strip-card">
+          <span class="strip-label">Highest static tokens</span>
+          <strong>{highest?.server.name ?? "No data"}</strong>
+        </article>
+      </section>
+
+      {heaviestMeasured && leanestMeasured && (
+        <section class="extremes">
+          <div class="section-head compact">
+            <div>
+              <p class="section-kicker">Extremes</p>
+              <h2>Heaviest And Leanest</h2>
+            </div>
+            <p class="section-copy">The current measured spread is large enough that the difference in static definition size is obvious even before looking at detailed breakdowns.</p>
+          </div>
+          <div class="extremes-grid">
+            <article class="extreme-card bad">
+              <p class="card-category">Heaviest measured</p>
+              <h3 class="card-title">{heaviestMeasured.server.name}</h3>
+              <p class="card-meta">
+                {heaviestMeasured.server.vendor} · {heaviestMeasured.current.version} · {formatNumber.format(heaviestMeasured.metrics.staticTokens)} tokens
+              </p>
+              <p class="notes">
+                {formatNumber.format(heaviestMeasured.current.toolCount)} tools · schema share {formatPercent.format(heaviestMeasured.metrics.schemaShare)}
+              </p>
+            </article>
+            <article class="extreme-card good">
+              <p class="card-category">Leanest measured</p>
+              <h3 class="card-title">{leanestMeasured.server.name}</h3>
+              <p class="card-meta">
+                {leanestMeasured.server.vendor} · {leanestMeasured.current.version} · {formatNumber.format(leanestMeasured.metrics.staticTokens)} tokens
+              </p>
+              <p class="notes">
+                {formatNumber.format(leanestMeasured.current.toolCount)} tools · schema share {formatPercent.format(leanestMeasured.metrics.schemaShare)}
+              </p>
+            </article>
+          </div>
+        </section>
+      )}
+
+      <section class="signal-board">
+        <div class="section-head compact">
+          <div>
+            <p class="section-kicker">Signals</p>
+            <h2>What Jumps Out</h2>
+          </div>
+          <p class="section-copy">These lists are tuned for public scanning: who is heaviest, who is leanest, and who is dominated by schema weight.</p>
+        </div>
+        <div class="signal-grid">
+          <article class="signal-card">
+            <p class="trend-head">Top 3 Heaviest</p>
+            <ul class="signal-list">
+              {topHeaviest.map((entry) => (
+                <li>
+                  <span>{entry.server.name}</span>
+                  <strong>{formatNumber.format(entry.metrics.staticTokens)}</strong>
+                </li>
+              ))}
+            </ul>
+          </article>
+          <article class="signal-card">
+            <p class="trend-head">Top 3 Leanest</p>
+            <ul class="signal-list">
+              {topLeanest.map((entry) => (
+                <li>
+                  <span>{entry.server.name}</span>
+                  <strong>{formatNumber.format(entry.metrics.staticTokens)}</strong>
+                </li>
+              ))}
+            </ul>
+          </article>
+          <article class="signal-card">
+            <p class="trend-head">Top 3 Schema-Heavy</p>
+            <ul class="signal-list">
+              {topSchemaHeavy.map((entry) => (
+                <li>
+                  <span>{entry.server.name}</span>
+                  <strong>{formatPercent.format(entry.metrics.schemaShare)}</strong>
+                </li>
+              ))}
+            </ul>
+          </article>
+        </div>
+      </section>
+
+      {(githubVariants.length > 1 || awsFamily.length > 1) && (
+        <section class="family-board">
+          <div class="section-head compact">
+          <div>
+            <p class="section-kicker">Families</p>
+            <h2>Configuration And Product Families</h2>
+          </div>
+          <p class="section-copy">Some vendors are best understood as families: configuration variants and split server lines show whether context is being budgeted deliberately.</p>
+        </div>
+          <div class="family-grid">
+            {githubVariants.length > 1 && (
+              <article class="family-card">
+                <p class="trend-head">GitHub toolsets</p>
+                <ul class="signal-list">
+                  {githubVariants.map((entry) => (
+                    <li>
+                      <span>{entry.server.name}</span>
+                      <strong>{formatNumber.format(entry.metrics.staticTokens)}</strong>
+                    </li>
+                  ))}
+                </ul>
+              </article>
+            )}
+            {awsFamily.length > 1 && (
+              <article class="family-card">
+                <p class="trend-head">AWS server family</p>
+                <ul class="signal-list">
+                  {awsFamily.map((entry) => (
+                    <li>
+                      <span>{entry.server.name}</span>
+                      <strong>{formatNumber.format(entry.metrics.staticTokens)}</strong>
+                    </li>
+                  ))}
+                </ul>
+              </article>
+            )}
+          </div>
+        </section>
+      )}
+
+      {featuredMeasured && (
+        <section class="featured-measured">
+          <div class="section-head compact">
+          <div>
+            <p class="section-kicker">Featured Measured Server</p>
+            <h2>{featuredMeasured.server.name}</h2>
+          </div>
+          <p class="section-copy">A measured entry is pinned here so the current benchmark has one concrete reference point above the fold.</p>
+        </div>
+          <article class="featured-card">
+            <div class="featured-top">
+              <div>
+                <p class="card-category">{featuredMeasured.server.category}</p>
+                <p class="card-meta">
+                  {featuredMeasured.server.vendor} · {featuredMeasured.current.version} · released {featuredMeasured.current.releasedAt}
+                </p>
+              </div>
+              <div class="pill-stack">
+                <span class="status-pill good">{featuredMeasured.server.status}</span>
+                <span class={`score-pill ${trendClass(featuredMeasured.metrics, featuredMeasured.previousMetrics)}`}>
+                  {formatNumber.format(featuredMeasured.metrics.staticTokens)} tokens
+                </span>
+              </div>
+            </div>
+            <div class="featured-metrics">
+              <div class="metric">
+                <span class="metric-label">Static Tokens</span>
+                <strong class="metric-value">{formatNumber.format(featuredMeasured.metrics.staticTokens)}</strong>
+              </div>
+              <div class="metric">
+                <span class="metric-label">Avg Tool Cost</span>
+                <strong class="metric-value">{formatToolAverage(featuredMeasured.metrics.toolAverage)}</strong>
+              </div>
+              <div class="metric">
+                <span class="metric-label">Schema Share</span>
+                <strong class="metric-value">{formatPercent.format(featuredMeasured.metrics.schemaShare)}</strong>
+              </div>
+              <div class="metric">
+                <span class="metric-label">Version Delta</span>
+                <strong class="metric-value">{changeLabel(featuredMeasured.metrics, featuredMeasured.previousMetrics)}</strong>
+              </div>
+            </div>
+            <div class="featured-columns">
+              <div>
+                <p class="trend-head">Heaviest tool</p>
+                {featuredMeasured.current.heavyTools[0] ? (
+                  <div class="offender-card">
+                    <span class="offender-name">{featuredMeasured.current.heavyTools[0].name}</span>
+                    <strong class="offender-tokens">
+                      {formatNumber.format(featuredMeasured.current.heavyTools[0].tokens)} tokens
+                    </strong>
+                    <p class="notes">This is the single heaviest tool definition in the latest measured release.</p>
+                  </div>
+                ) : (
+                  <p class="notes">No tool definitions are exposed in this release.</p>
+                )}
+              </div>
+              <div>
+                <p class="trend-head">Assessment</p>
+                <p class="notes">{featuredMeasured.current.notes}</p>
+                <p class="notes">Schema cost dominates this server. That is the clearest place to push for context reduction first.</p>
+                <a class="repo-link" href={featuredMeasured.server.repoUrl} target="_blank" rel="noreferrer noopener">Repository</a>
+              </div>
+            </div>
+          </article>
+        </section>
+      )}
+
+      {githubVariants.length > 1 && (
+        <section class="vendor-compare">
+          <div class="section-head compact">
+            <div>
+              <p class="section-kicker">Toolset Comparison</p>
+              <h2>GitHub MCP Scope Control</h2>
+            </div>
+            <p class="section-copy">GitHub is one of the clearest examples of context budgeting by configuration. The difference between default and all toolsets is not subtle.</p>
+          </div>
+          <div class="compare-grid">
+            {githubVariants.map((entry, index) => {
+              const baseline = githubVariants[0];
+              const deltaTokens = entry.metrics.staticTokens - baseline.metrics.staticTokens;
+              const deltaPercent = ((entry.metrics.staticTokens / baseline.metrics.staticTokens) - 1) * 100;
+
+              return (
+                <article class={`compare-card ${index === 0 ? "is-baseline" : ""}`}>
+                  <p class="card-category">{entry.server.name}</p>
+                  <div class="compare-row">
+                    <span class="metric-label">Static Tokens</span>
+                    <strong class="metric-value">{formatNumber.format(entry.metrics.staticTokens)}</strong>
+                  </div>
+                  <div class="compare-row">
+                    <span class="metric-label">Tool Count</span>
+                    <strong class="metric-value">{formatNumber.format(entry.current.toolCount)}</strong>
+                  </div>
+                  <div class="compare-row">
+                    <span class="metric-label">Vs default</span>
+                    <strong class={`metric-value ${deltaTokens > 0 ? "bad" : "good"}`}>
+                      {deltaTokens === 0 ? "baseline" : `${deltaTokens > 0 ? "+" : ""}${formatNumber.format(deltaTokens)} tokens`}
+                    </strong>
+                  </div>
+                  {deltaTokens !== 0 && (
+                    <p class="notes">{deltaPercent > 0 ? `+${deltaPercent.toFixed(1)}% vs default` : `${deltaPercent.toFixed(1)}% vs default`}</p>
+                  )}
+                </article>
+              );
+            })}
+          </div>
+        </section>
+      )}
+
+      <section class="methodology">
+        <div class="section-head compact">
+          <div>
+            <p class="section-kicker">Methodology</p>
+            <h2>What This Measures</h2>
+          </div>
+        </div>
+        <div class="hero-grid methodology-grid">
+          <article class="hero-card">
+            <span class="hero-label">Scope</span>
+            <strong>Static exposure only.</strong>
+            <p>Instructions, tool descriptions, schemas, prompts, and heavy-tool concentration are counted. Runtime tool output is excluded.</p>
+          </article>
+          <article class="hero-card">
+            <span class="hero-label">Sort</span>
+            <strong>Heaviest first by static tokens.</strong>
+            <p>Higher means more static context overhead. Tool average and schema share remain supporting breakdown metrics.</p>
+          </article>
+          <article class="hero-card">
+            <span class="hero-label">Data status</span>
+            <strong>{measuredCount > 0 ? "Mixed measured dataset." : "Demo dataset."}</strong>
+            <p>
+              {measuredCount > 0
+                ? `${measuredCount} measured server(s), ${demoCount} demo server(s). Methodology version ${benchmarks.methodologyVersion}.`
+              : `${demoCount} demo server(s). Methodology version ${benchmarks.methodologyVersion}. Replace with measured snapshots before publication.`}
+            </p>
+          </article>
+        </div>
+        <div class="glossary">
+          <article class="glossary-card">
+            <span class="hero-label">Tool</span>
+            <p>An MCP action exposed to the client, including its name, description, and input schema.</p>
+          </article>
+          <article class="glossary-card">
+            <span class="hero-label">Tool Avg</span>
+            <p>Average static tokens per tool when tools are exposed. Higher means each tool definition is heavier on average.</p>
+          </article>
+          <article class="glossary-card">
+            <span class="hero-label">Schema Share</span>
+            <p>Percent of static tokens coming from input schemas rather than tool descriptions or instructions.</p>
+          </article>
+        </div>
+        <div class="caveats">
+          <p><strong>What this is:</strong> static exposure measurement of MCP metadata, not runtime prompt usage inside a proprietary host.</p>
+          <p><strong>Auth caveat:</strong> some servers expose metadata with dummy credentials, some require real credentials, and some require manual OAuth in a browser.</p>
+          <p><strong>Interpretation:</strong> a high token count does not automatically mean a bad product, but it does mean the server is carrying more static context overhead that should be justified.</p>
+        </div>
+      </section>
+
+      <section class="section-head">
+        <div>
+          <p class="section-kicker">Table</p>
+          <h2>Latest Releases</h2>
+        </div>
+        <p class="section-copy">Ordered from heaviest to leanest by static tokens. Improvement is based on the token delta from the previous released version.</p>
+      </section>
+
+      <section class="table-wrap">
+        <table class="leaderboard">
+          <thead>
+            <tr>
+              <th>Rank</th>
+              <th>Server</th>
+              <th>Vendor</th>
+              <th>Static Tokens</th>
+              <th>
+                <span class="hint-label" tabindex="0">
+                  Tool Avg
+                  <span class="hint-bubble">Average static tokens per tool when tools are exposed. Tool-free servers show N/A.</span>
+                </span>
+              </th>
+              <th>
+                <span class="hint-label" tabindex="0">
+                  Schema Share
+                  <span class="hint-bubble">Percent of static tokens coming from input schemas rather than descriptions or instructions.</span>
+                </span>
+              </th>
+              <th>Improvement</th>
+            </tr>
+          </thead>
+          <tbody>
+            {ranked.map((entry, index) => (
+              <tr>
+                <td>{index + 1}</td>
+                <td>
+                  {entry.server.name}
+                  <span class="cell-sub">{entry.current.version}</span>
+                </td>
+                <td>{entry.server.vendor}</td>
+                <td>{formatNumber.format(entry.metrics.staticTokens)}</td>
+                <td>{formatToolAverage(entry.metrics.toolAverage)}</td>
+                <td>{formatPercent.format(entry.metrics.schemaShare)}</td>
+                <td class={trendClass(entry.metrics, entry.previousMetrics)}>{changeLabel(entry.metrics, entry.previousMetrics)}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </section>
+
+      <section class="section-head">
+        <div>
+          <p class="section-kicker">Profiles</p>
+          <h2>Server Scorecards</h2>
+        </div>
+        <p class="section-copy">Each card shows where the weight comes from and whether the latest release moved in the right direction.</p>
+      </section>
+
+      <section class="card-grid">
+        {ranked.map((entry) => (
+          <article class="scorecard">
+            <div class="scorecard-top">
+              <div>
+                <p class="card-category">{entry.server.category}</p>
+                <h3 class="card-title">{entry.server.name}</h3>
+              </div>
+              <div class="pill-stack">
+                <span class={`status-pill ${entry.server.status === "measured" ? "good" : "neutral"}`}>{entry.server.status}</span>
+                <span class={`score-pill ${trendClass(entry.metrics, entry.previousMetrics)}`}>{formatNumber.format(entry.metrics.staticTokens)} tokens</span>
+              </div>
+            </div>
+            <p class="card-meta">{entry.server.vendor} · {entry.current.version} · released {entry.current.releasedAt}</p>
+            <div class="metric-grid">
+              <div class="metric">
+                <span class="metric-label">Static Tokens</span>
+                <strong class="metric-value">{formatNumber.format(entry.metrics.staticTokens)}</strong>
+              </div>
+              <div class="metric">
+                <span class="metric-label">Avg Tool Cost</span>
+                <strong class="metric-value">{formatToolAverage(entry.metrics.toolAverage)}</strong>
+              </div>
+              <div class="metric">
+                <span class="metric-label">Schema Share</span>
+                <strong class="metric-value">{formatPercent.format(entry.metrics.schemaShare)}</strong>
+              </div>
+              <div class="metric">
+                <span class="metric-label">Version Delta</span>
+                <strong class="metric-value">{changeLabel(entry.metrics, entry.previousMetrics)}</strong>
+              </div>
+            </div>
+            <div class="breakdown-bar" aria-hidden="true">
+              <span class="bar instructions" style={`width:${ratio(entry.current.totals.instructionsTokens, entry.metrics.staticTokens) * 100}%`}></span>
+              <span class="bar descriptions" style={`width:${ratio(entry.current.totals.toolDescriptionTokens, entry.metrics.staticTokens) * 100}%`}></span>
+              <span class="bar schemas" style={`width:${ratio(entry.current.totals.inputSchemaTokens, entry.metrics.staticTokens) * 100}%`}></span>
+              <span class="bar prompts" style={`width:${ratio(entry.current.totals.promptTokens, entry.metrics.staticTokens) * 100}%`}></span>
+            </div>
+            <div class="trend">
+              <p class="trend-head">Release history</p>
+              <ul class="history-list">
+                {[...entry.server.history]
+                  .sort((a, b) => new Date(b.releasedAt).getTime() - new Date(a.releasedAt).getTime())
+                  .map((version) => (
+                    <li>
+                      <span>{version.version}</span>
+                      <strong>{formatNumber.format(computeMetrics(version).staticTokens)}</strong>
+                      <em>{version.releasedAt}</em>
+                    </li>
+                  ))}
+              </ul>
+            </div>
+            <div class="trend">
+              <p class="trend-head">Heaviest tools</p>
+              <ul class="tool-list">
+                {entry.current.heavyTools.map((tool) => (
+                  <li>
+                    <span>{tool.name}</span>
+                    <strong>{formatNumber.format(tool.tokens)}</strong>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <p class="notes">{entry.current.notes}</p>
+            <a class="repo-link" href={entry.server.repoUrl} target="_blank" rel="noreferrer noopener">Repository</a>
+          </article>
+        ))}
+      </section>
+    </main>
+  </body>
+</html>

@@ -1,0 +1,2639 @@
+{
+  "methodologyVersion": "2026-04-04",
+  "description": "Measured benchmark data for static MCP context footprint. Static metadata is collected from MCP servers without invoking an LLM.",
+  "servers": [
+    {
+      "id": "amazon-kendra-index",
+      "name": "Amazon Kendra Index MCP Server",
+      "vendor": "AWS",
+      "category": "Search & Analytics",
+      "repoUrl": "https://github.com/awslabs/mcp/tree/main/src/amazon-kendra-index-mcp-server",
+      "status": "measured",
+      "history": [
+        {
+          "version": "unknown",
+          "releasedAt": "2026-04-04",
+          "toolCount": 2,
+          "totals": {
+            "staticTokens": 339,
+            "instructionsTokens": 20,
+            "toolNameTokens": 9,
+            "toolDescriptionTokens": 189,
+            "inputSchemaTokens": 121,
+            "promptTokens": 0,
+            "resourceTokens": 0
+          },
+          "heavyTools": [
+            {
+              "name": "KendraQueryTool",
+              "tokens": 213
+            },
+            {
+              "name": "KendraListIndexesTool",
+              "tokens": 106
+            }
+          ],
+          "notes": "Measured on 2026-04-05 from Amazon Kendra Index MCP Server. Static metadata listing succeeded in a credentialed read-only measurement setup."
+        }
+      ]
+    },
+    {
+      "id": "amazon-keyspaces",
+      "name": "Amazon Keyspaces MCP Server",
+      "vendor": "AWS",
+      "category": "SQL & NoSQL Databases",
+      "repoUrl": "https://github.com/awslabs/mcp/tree/main/src/amazon-keyspaces-mcp-server",
+      "status": "measured",
+      "history": [
+        {
+          "version": "unknown",
+          "releasedAt": "2026-04-04",
+          "toolCount": 6,
+          "totals": {
+            "staticTokens": 404,
+            "instructionsTokens": 0,
+            "toolNameTokens": 16,
+            "toolDescriptionTokens": 87,
+            "inputSchemaTokens": 301,
+            "promptTokens": 0,
+            "resourceTokens": 0
+          },
+          "heavyTools": [
+            {
+              "name": "analyzeQueryPerformance",
+              "tokens": 91
+            },
+            {
+              "name": "executeQuery",
+              "tokens": 85
+            },
+            {
+              "name": "describeTable",
+              "tokens": 79
+            }
+          ],
+          "notes": "Measured on 2026-04-05 from the Amazon Keyspaces MCP server using uvx with Python 3.11, which the upstream package requires. Static metadata listing succeeded without establishing a database session."
+        }
+      ]
+    },
+    {
+      "id": "amazon-mq",
+      "name": "Amazon MQ MCP Server",
+      "vendor": "AWS",
+      "category": "Integration & Messaging",
+      "repoUrl": "https://github.com/awslabs/mcp/tree/main/src/amazon-mq-mcp-server",
+      "status": "measured",
+      "history": [
+        {
+          "version": "unknown",
+          "releasedAt": "2026-04-04",
+          "toolCount": 34,
+          "totals": {
+            "staticTokens": 3812,
+            "instructionsTokens": 12,
+            "toolNameTokens": 179,
+            "toolDescriptionTokens": 771,
+            "inputSchemaTokens": 2850,
+            "promptTokens": 0,
+            "resourceTokens": 0
+          },
+          "heavyTools": [
+            {
+              "name": "update_broker",
+              "tokens": 669
+            },
+            {
+              "name": "describe_broker_instance_options",
+              "tokens": 254
+            },
+            {
+              "name": "rabbitmq_broker_get_guideline",
+              "tokens": 219
+            }
+          ],
+          "notes": "Measured on 2026-04-05 from Amazon MQ MCP Server. Static metadata listing succeeded in a credentialed read-only measurement setup."
+        }
+      ]
+    },
+    {
+      "id": "amazon-neptune",
+      "name": "Amazon Neptune MCP Server",
+      "vendor": "AWS",
+      "category": "SQL & NoSQL Databases",
+      "repoUrl": "https://github.com/awslabs/mcp/tree/main/src/amazon-neptune-mcp-server",
+      "status": "measured",
+      "history": [
+        {
+          "version": "unknown",
+          "releasedAt": "2026-04-04",
+          "toolCount": 4,
+          "totals": {
+            "staticTokens": 275,
+            "instructionsTokens": 18,
+            "toolNameTokens": 16,
+            "toolDescriptionTokens": 62,
+            "inputSchemaTokens": 123,
+            "promptTokens": 0,
+            "resourceTokens": 56
+          },
+          "heavyTools": [
+            {
+              "name": "run_opencypher_query",
+              "tokens": 77
+            },
+            {
+              "name": "run_gremlin_query",
+              "tokens": 50
+            },
+            {
+              "name": "get_graph_schema",
+              "tokens": 45
+            }
+          ],
+          "notes": "Measured on 2026-04-05 from Amazon Neptune MCP Server. Static metadata listing succeeded in a credentialed read-only measurement setup."
+        }
+      ]
+    },
+    {
+      "id": "amazon-sns-sqs",
+      "name": "Amazon SNS SQS MCP Server",
+      "vendor": "AWS",
+      "category": "Integration & Messaging",
+      "repoUrl": "https://github.com/awslabs/mcp/tree/main/src/amazon-sns-sqs-mcp-server",
+      "status": "measured",
+      "history": [
+        {
+          "version": "unknown",
+          "releasedAt": "2026-04-04",
+          "toolCount": 43,
+          "totals": {
+            "staticTokens": 4728,
+            "instructionsTokens": 15,
+            "toolNameTokens": 149,
+            "toolDescriptionTokens": 554,
+            "inputSchemaTokens": 4010,
+            "promptTokens": 0,
+            "resourceTokens": 0
+          },
+          "heavyTools": [
+            {
+              "name": "publish",
+              "tokens": 298
+            },
+            {
+              "name": "receive_message",
+              "tokens": 298
+            },
+            {
+              "name": "send_message",
+              "tokens": 246
+            }
+          ],
+          "notes": "Measured on 2026-04-05 from Amazon SNS SQS MCP Server. Static metadata listing succeeded in a credentialed read-only measurement setup."
+        }
+      ]
+    },
+    {
+      "id": "aurora-dsql",
+      "name": "Aurora DSQL MCP Server",
+      "vendor": "AWS",
+      "category": "SQL & NoSQL Databases",
+      "repoUrl": "https://github.com/awslabs/mcp/tree/main/src/aurora-dsql-mcp-server",
+      "status": "measured",
+      "history": [
+        {
+          "version": "unknown",
+          "releasedAt": "2026-04-04",
+          "toolCount": 6,
+          "totals": {
+            "staticTokens": 1163,
+            "instructionsTokens": 165,
+            "toolNameTokens": 20,
+            "toolDescriptionTokens": 624,
+            "inputSchemaTokens": 354,
+            "promptTokens": 0,
+            "resourceTokens": 0
+          },
+          "heavyTools": [
+            {
+              "name": "transact",
+              "tokens": 440
+            },
+            {
+              "name": "readonly_query",
+              "tokens": 254
+            },
+            {
+              "name": "dsql_read_documentation",
+              "tokens": 117
+            }
+          ],
+          "notes": "Measured on 2026-04-05 from Aurora DSQL MCP Server. Static metadata listing succeeded in a credentialed read-only measurement setup."
+        }
+      ]
+    },
+    {
+      "id": "aws-api",
+      "name": "AWS API MCP Server",
+      "vendor": "AWS",
+      "category": "Developer Tools & Support",
+      "repoUrl": "https://github.com/awslabs/mcp/tree/main/src/aws-api-mcp-server",
+      "status": "measured",
+      "history": [
+        {
+          "version": "unknown",
+          "releasedAt": "2026-04-04",
+          "toolCount": 2,
+          "totals": {
+            "staticTokens": 1465,
+            "instructionsTokens": 0,
+            "toolNameTokens": 7,
+            "toolDescriptionTokens": 1305,
+            "inputSchemaTokens": 153,
+            "promptTokens": 0,
+            "resourceTokens": 0
+          },
+          "heavyTools": [
+            {
+              "name": "call_aws",
+              "tokens": 750
+            },
+            {
+              "name": "suggest_aws_commands",
+              "tokens": 715
+            }
+          ],
+          "notes": "Measured on 2026-04-05 from AWS API MCP Server. Static metadata listing succeeded in a credentialed read-only measurement setup."
+        }
+      ]
+    },
+    {
+      "id": "aws-appsync",
+      "name": "AWS AppSync MCP Server",
+      "vendor": "AWS",
+      "category": "Application Development",
+      "repoUrl": "https://github.com/awslabs/mcp/tree/main/src/aws-appsync-mcp-server",
+      "status": "measured",
+      "history": [
+        {
+          "version": "unknown",
+          "releasedAt": "2026-04-04",
+          "toolCount": 10,
+          "totals": {
+            "staticTokens": 4084,
+            "instructionsTokens": 95,
+            "toolNameTokens": 28,
+            "toolDescriptionTokens": 582,
+            "inputSchemaTokens": 3379,
+            "promptTokens": 0,
+            "resourceTokens": 0
+          },
+          "heavyTools": [
+            {
+              "name": "create_graphql_api",
+              "tokens": 851
+            },
+            {
+              "name": "create_resolver",
+              "tokens": 627
+            },
+            {
+              "name": "create_datasource",
+              "tokens": 606
+            }
+          ],
+          "notes": "Measured on 2026-04-05 from AWS AppSync MCP Server. Static metadata listing succeeded in a credentialed read-only measurement setup."
+        }
+      ]
+    },
+    {
+      "id": "aws-bedrock-custom-model-import",
+      "name": "AWS Bedrock Custom Model Import MCP Server",
+      "vendor": "AWS",
+      "category": "AI & Machine Learning",
+      "repoUrl": "https://github.com/awslabs/mcp/tree/main/src/aws-bedrock-custom-model-import-mcp-server",
+      "status": "measured",
+      "history": [
+        {
+          "version": "unknown",
+          "releasedAt": "2026-04-04",
+          "toolCount": 6,
+          "totals": {
+            "staticTokens": 3681,
+            "instructionsTokens": 466,
+            "toolNameTokens": 24,
+            "toolDescriptionTokens": 1750,
+            "inputSchemaTokens": 1111,
+            "promptTokens": 330,
+            "resourceTokens": 0
+          },
+          "heavyTools": [
+            {
+              "name": "create_model_import_job",
+              "tokens": 871
+            },
+            {
+              "name": "list_model_import_jobs",
+              "tokens": 602
+            },
+            {
+              "name": "list_imported_models",
+              "tokens": 531
+            }
+          ],
+          "notes": "Measured on 2026-04-05 from AWS Bedrock Custom Model Import MCP Server. Static metadata listing succeeded in a credentialed read-only measurement setup."
+        }
+      ]
+    },
+    {
+      "id": "aws-bedrock-data-automation",
+      "name": "AWS Bedrock Data Automation MCP Server",
+      "vendor": "AWS",
+      "category": "AI & Machine Learning",
+      "repoUrl": "https://github.com/awslabs/mcp/tree/main/src/aws-bedrock-data-automation-mcp-server",
+      "status": "measured",
+      "history": [
+        {
+          "version": "unknown",
+          "releasedAt": "2026-04-04",
+          "toolCount": 3,
+          "totals": {
+            "staticTokens": 964,
+            "instructionsTokens": 160,
+            "toolNameTokens": 8,
+            "toolDescriptionTokens": 654,
+            "inputSchemaTokens": 142,
+            "promptTokens": 0,
+            "resourceTokens": 0
+          },
+          "heavyTools": [
+            {
+              "name": "analyzeasset",
+              "tokens": 394
+            },
+            {
+              "name": "getprojects",
+              "tokens": 206
+            },
+            {
+              "name": "getprojectdetails",
+              "tokens": 204
+            }
+          ],
+          "notes": "Measured on 2026-04-05 from AWS Bedrock Data Automation MCP Server. Static metadata listing succeeded in a credentialed read-only measurement setup."
+        }
+      ]
+    },
+    {
+      "id": "aws-dataprocessing",
+      "name": "AWS Dataprocessing MCP Server",
+      "vendor": "AWS",
+      "category": "Data Operations & ETL",
+      "repoUrl": "https://github.com/awslabs/mcp/tree/main/src/aws-dataprocessing-mcp-server",
+      "status": "measured",
+      "history": [
+        {
+          "version": "unknown",
+          "releasedAt": "2026-04-04",
+          "toolCount": 34,
+          "totals": {
+            "staticTokens": 34730,
+            "instructionsTokens": 4571,
+            "toolNameTokens": 236,
+            "toolDescriptionTokens": 14908,
+            "inputSchemaTokens": 15015,
+            "promptTokens": 0,
+            "resourceTokens": 0
+          },
+          "heavyTools": [
+            {
+              "name": "manage_aws_emr_clusters",
+              "tokens": 3260
+            },
+            {
+              "name": "manage_aws_emr_serverless_job_runs",
+              "tokens": 1815
+            },
+            {
+              "name": "manage_aws_emr_serverless_applications",
+              "tokens": 1742
+            }
+          ],
+          "notes": "Measured on 2026-04-05 from AWS Dataprocessing MCP Server. Static metadata listing succeeded in a credentialed read-only measurement setup."
+        }
+      ]
+    },
+    {
+      "id": "aws-diagram",
+      "name": "AWS Diagram MCP Server",
+      "vendor": "AWS",
+      "category": "Infrastructure as Code",
+      "repoUrl": "https://github.com/awslabs/mcp/tree/main/src/aws-diagram-mcp-server",
+      "status": "measured",
+      "history": [
+        {
+          "version": "unknown",
+          "releasedAt": "2026-04-04",
+          "toolCount": 3,
+          "totals": {
+            "staticTokens": 1896,
+            "instructionsTokens": 454,
+            "toolNameTokens": 9,
+            "toolDescriptionTokens": 1053,
+            "inputSchemaTokens": 380,
+            "promptTokens": 0,
+            "resourceTokens": 0
+          },
+          "heavyTools": [
+            {
+              "name": "generate_diagram",
+              "tokens": 688
+            },
+            {
+              "name": "get_diagram_examples",
+              "tokens": 410
+            },
+            {
+              "name": "list_icons",
+              "tokens": 344
+            }
+          ],
+          "notes": "Measured on 2026-04-05 from AWS Diagram MCP Server. Static metadata listing succeeded in a credentialed read-only measurement setup."
+        }
+      ]
+    },
+    {
+      "id": "aws-documentation",
+      "name": "AWS Documentation MCP Server",
+      "vendor": "AWS",
+      "category": "Cloud Documentation",
+      "repoUrl": "https://github.com/awslabs/mcp/tree/main/src/aws-documentation-mcp-server",
+      "status": "measured",
+      "history": [
+        {
+          "version": "unknown",
+          "releasedAt": "2026-04-04",
+          "toolCount": 4,
+          "totals": {
+            "staticTokens": 2280,
+            "instructionsTokens": 353,
+            "toolNameTokens": 9,
+            "toolDescriptionTokens": 1438,
+            "inputSchemaTokens": 480,
+            "promptTokens": 0,
+            "resourceTokens": 0
+          },
+          "heavyTools": [
+            {
+              "name": "search_documentation",
+              "tokens": 697
+            },
+            {
+              "name": "read_sections",
+              "tokens": 455
+            },
+            {
+              "name": "read_documentation",
+              "tokens": 414
+            }
+          ],
+          "notes": "Measured on 2026-04-04 from AWS Documentation MCP Server. Static metadata listing succeeded without authentication."
+        }
+      ]
+    },
+    {
+      "id": "aws-healthomics",
+      "name": "AWS Healthomics MCP Server",
+      "vendor": "AWS",
+      "category": "Healthcare & Lifesciences",
+      "repoUrl": "https://github.com/awslabs/mcp/tree/main/src/aws-healthomics-mcp-server",
+      "status": "measured",
+      "history": [
+        {
+          "version": "unknown",
+          "releasedAt": "2026-04-04",
+          "toolCount": 73,
+          "totals": {
+            "staticTokens": 31892,
+            "instructionsTokens": 1616,
+            "toolNameTokens": 372,
+            "toolDescriptionTokens": 11718,
+            "inputSchemaTokens": 18186,
+            "promptTokens": 0,
+            "resourceTokens": 0
+          },
+          "heavyTools": [
+            {
+              "name": "CreateAHOWorkflowVersion",
+              "tokens": 1326
+            },
+            {
+              "name": "SearchGenomicsFiles",
+              "tokens": 1277
+            },
+            {
+              "name": "CreateAHOWorkflow",
+              "tokens": 1180
+            }
+          ],
+          "notes": "Measured on 2026-04-05 from AWS Healthomics MCP Server. Static metadata listing succeeded in a credentialed read-only measurement setup."
+        }
+      ]
+    },
+    {
+      "id": "aws-iac",
+      "name": "AWS IaC MCP Server",
+      "vendor": "AWS",
+      "category": "Infrastructure as Code",
+      "repoUrl": "https://github.com/awslabs/mcp/tree/main/src/aws-iac-mcp-server",
+      "status": "measured",
+      "history": [
+        {
+          "version": "unknown",
+          "releasedAt": "2026-04-04",
+          "toolCount": 9,
+          "totals": {
+            "staticTokens": 4424,
+            "instructionsTokens": 308,
+            "toolNameTokens": 55,
+            "toolDescriptionTokens": 3685,
+            "inputSchemaTokens": 376,
+            "promptTokens": 0,
+            "resourceTokens": 0
+          },
+          "heavyTools": [
+            {
+              "name": "read_iac_documentation_page",
+              "tokens": 832
+            },
+            {
+              "name": "search_cdk_samples_and_constructs",
+              "tokens": 483
+            },
+            {
+              "name": "search_cdk_documentation",
+              "tokens": 471
+            }
+          ],
+          "notes": "Measured on 2026-04-05 from AWS IaC MCP Server. Static metadata listing succeeded in a credentialed read-only measurement setup."
+        }
+      ]
+    },
+    {
+      "id": "aws-iot-sitewise",
+      "name": "AWS IoT Sitewise MCP Server",
+      "vendor": "AWS",
+      "category": "Integration & Messaging",
+      "repoUrl": "https://github.com/awslabs/mcp/tree/main/src/aws-iot-sitewise-mcp-server",
+      "status": "measured",
+      "history": [
+        {
+          "version": "unknown",
+          "releasedAt": "2026-04-04",
+          "toolCount": 41,
+          "totals": {
+            "staticTokens": 15565,
+            "instructionsTokens": 57,
+            "toolNameTokens": 165,
+            "toolDescriptionTokens": 9352,
+            "inputSchemaTokens": 5908,
+            "promptTokens": 83,
+            "resourceTokens": 0
+          },
+          "heavyTools": [
+            {
+              "name": "execute_query",
+              "tokens": 2350
+            },
+            {
+              "name": "list_computation_model_data_binding_usages",
+              "tokens": 792
+            },
+            {
+              "name": "describe_computation_model_execution_summary",
+              "tokens": 750
+            }
+          ],
+          "notes": "Measured on 2026-04-05 from AWS IoT Sitewise MCP Server. Static metadata listing succeeded in a credentialed read-only measurement setup."
+        }
+      ]
+    },
+    {
+      "id": "aws-knowledge",
+      "name": "AWS Knowledge MCP Server",
+      "vendor": "AWS",
+      "category": "Knowledge & Search",
+      "repoUrl": "https://github.com/awslabs/mcp/tree/main/src/aws-knowledge-mcp-server",
+      "status": "measured",
+      "history": [
+        {
+          "version": "remote",
+          "releasedAt": "2026-04-05",
+          "toolCount": 6,
+          "totals": {
+            "staticTokens": 4550,
+            "instructionsTokens": 0,
+            "toolNameTokens": 30,
+            "toolDescriptionTokens": 3967,
+            "inputSchemaTokens": 553,
+            "promptTokens": 0,
+            "resourceTokens": 0
+          },
+          "heavyTools": [
+            {
+              "name": "aws___search_documentation",
+              "tokens": 1964
+            },
+            {
+              "name": "aws___get_regional_availability",
+              "tokens": 920
+            },
+            {
+              "name": "aws___read_documentation",
+              "tokens": 823
+            }
+          ],
+          "notes": "Measured on 2026-04-05 from the official AWS Knowledge remote MCP endpoint. Static metadata listing succeeded over Streamable HTTP without authentication."
+        }
+      ]
+    },
+    {
+      "id": "aws-location",
+      "name": "AWS Location MCP Server",
+      "vendor": "AWS",
+      "category": "Application Development",
+      "repoUrl": "https://github.com/awslabs/mcp/tree/main/src/aws-location-mcp-server",
+      "status": "measured",
+      "history": [
+        {
+          "version": "unknown",
+          "releasedAt": "2026-04-04",
+          "toolCount": 8,
+          "totals": {
+            "staticTokens": 1559,
+            "instructionsTokens": 288,
+            "toolNameTokens": 23,
+            "toolDescriptionTokens": 362,
+            "inputSchemaTokens": 886,
+            "promptTokens": 0,
+            "resourceTokens": 0
+          },
+          "heavyTools": [
+            {
+              "name": "calculate_route",
+              "tokens": 266
+            },
+            {
+              "name": "optimize_waypoints",
+              "tokens": 248
+            },
+            {
+              "name": "search_nearby",
+              "tokens": 205
+            }
+          ],
+          "notes": "Measured on 2026-04-05 from AWS Location MCP Server. Static metadata listing succeeded in a credentialed read-only measurement setup."
+        }
+      ]
+    },
+    {
+      "id": "aws-msk",
+      "name": "AWS MSK MCP Server",
+      "vendor": "AWS",
+      "category": "Integration & Messaging",
+      "repoUrl": "https://github.com/awslabs/mcp/tree/main/src/aws-msk-mcp-server",
+      "status": "measured",
+      "history": [
+        {
+          "version": "unknown",
+          "releasedAt": "2026-04-04",
+          "toolCount": 12,
+          "totals": {
+            "staticTokens": 1566,
+            "instructionsTokens": 65,
+            "toolNameTokens": 44,
+            "toolDescriptionTokens": 111,
+            "inputSchemaTokens": 1346,
+            "promptTokens": 0,
+            "resourceTokens": 0
+          },
+          "heavyTools": [
+            {
+              "name": "list_topics",
+              "tokens": 217
+            },
+            {
+              "name": "describe_topic_partitions",
+              "tokens": 182
+            },
+            {
+              "name": "get_cluster_info",
+              "tokens": 158
+            }
+          ],
+          "notes": "Measured on 2026-04-05 from AWS MSK MCP Server. Static metadata listing succeeded in a credentialed read-only measurement setup."
+        }
+      ]
+    },
+    {
+      "id": "aws-network",
+      "name": "AWS Network MCP Server",
+      "vendor": "AWS",
+      "category": "Infrastructure & Deployment",
+      "repoUrl": "https://github.com/awslabs/mcp/tree/main/src/aws-network-mcp-server",
+      "status": "measured",
+      "history": [
+        {
+          "version": "unknown",
+          "releasedAt": "2026-04-04",
+          "toolCount": 27,
+          "totals": {
+            "staticTokens": 12521,
+            "instructionsTokens": 545,
+            "toolNameTokens": 116,
+            "toolDescriptionTokens": 7589,
+            "inputSchemaTokens": 4271,
+            "promptTokens": 0,
+            "resourceTokens": 0
+          },
+          "heavyTools": [
+            {
+              "name": "get_vpc_flow_logs",
+              "tokens": 1048
+            },
+            {
+              "name": "get_tgw_flow_logs",
+              "tokens": 962
+            },
+            {
+              "name": "get_firewall_flow_logs",
+              "tokens": 888
+            }
+          ],
+          "notes": "Measured on 2026-04-05 from AWS Network MCP Server. Static metadata listing succeeded in a credentialed read-only measurement setup."
+        }
+      ]
+    },
+    {
+      "id": "aws-pricing",
+      "name": "AWS Pricing MCP Server",
+      "vendor": "AWS",
+      "category": "Cost & Operations",
+      "repoUrl": "https://github.com/awslabs/mcp/tree/main/src/aws-pricing-mcp-server",
+      "status": "measured",
+      "history": [
+        {
+          "version": "unknown",
+          "releasedAt": "2026-04-04",
+          "toolCount": 9,
+          "totals": {
+            "staticTokens": 7007,
+            "instructionsTokens": 808,
+            "toolNameTokens": 40,
+            "toolDescriptionTokens": 4400,
+            "inputSchemaTokens": 1759,
+            "promptTokens": 0,
+            "resourceTokens": 0
+          },
+          "heavyTools": [
+            {
+              "name": "get_pricing",
+              "tokens": 3235
+            },
+            {
+              "name": "generate_cost_report",
+              "tokens": 1254
+            },
+            {
+              "name": "get_pricing_attribute_values",
+              "tokens": 518
+            }
+          ],
+          "notes": "Measured on 2026-04-05 from AWS Pricing MCP Server. Static metadata listing succeeded in a credentialed read-only measurement setup."
+        }
+      ]
+    },
+    {
+      "id": "aws-serverless",
+      "name": "AWS Serverless MCP Server",
+      "vendor": "AWS",
+      "category": "Cloud Development",
+      "repoUrl": "https://github.com/awslabs/mcp/tree/main/src/aws-serverless-mcp-server",
+      "status": "measured",
+      "history": [
+        {
+          "version": "unknown",
+          "releasedAt": "2026-04-04",
+          "toolCount": 25,
+          "totals": {
+            "staticTokens": 11746,
+            "instructionsTokens": 749,
+            "toolNameTokens": 97,
+            "toolDescriptionTokens": 2904,
+            "inputSchemaTokens": 7832,
+            "promptTokens": 0,
+            "resourceTokens": 164
+          },
+          "heavyTools": [
+            {
+              "name": "sam_build",
+              "tokens": 1334
+            },
+            {
+              "name": "sam_init",
+              "tokens": 1069
+            },
+            {
+              "name": "deploy_webapp",
+              "tokens": 1042
+            }
+          ],
+          "notes": "Measured on 2026-04-04 from AWS Serverless MCP Server. Static metadata listing succeeded in a credentialed read-only measurement setup."
+        }
+      ]
+    },
+    {
+      "id": "aws-support",
+      "name": "AWS Support MCP Server",
+      "vendor": "AWS",
+      "category": "Support",
+      "repoUrl": "https://github.com/awslabs/mcp/tree/main/src/aws-support-mcp-server",
+      "status": "measured",
+      "history": [
+        {
+          "version": "unknown",
+          "releasedAt": "2026-04-04",
+          "toolCount": 6,
+          "totals": {
+            "staticTokens": 3261,
+            "instructionsTokens": 1286,
+            "toolNameTokens": 20,
+            "toolDescriptionTokens": 911,
+            "inputSchemaTokens": 882,
+            "promptTokens": 0,
+            "resourceTokens": 162
+          },
+          "heavyTools": [
+            {
+              "name": "describe_support_cases",
+              "tokens": 461
+            },
+            {
+              "name": "create_support_case",
+              "tokens": 456
+            },
+            {
+              "name": "describe_services",
+              "tokens": 331
+            }
+          ],
+          "notes": "Measured on 2026-04-05 from AWS Support MCP Server. Static metadata listing succeeded in a credentialed read-only measurement setup."
+        }
+      ]
+    },
+    {
+      "id": "azure-devops",
+      "name": "Azure DevOps MCP Server",
+      "vendor": "Microsoft",
+      "category": "Developer Platform",
+      "repoUrl": "https://github.com/microsoft/azure-devops-mcp",
+      "status": "measured",
+      "history": [
+        {
+          "version": "2.5.0",
+          "releasedAt": "2026-04-04",
+          "toolCount": 86,
+          "totals": {
+            "staticTokens": 17259,
+            "instructionsTokens": 0,
+            "toolNameTokens": 418,
+            "toolDescriptionTokens": 1192,
+            "inputSchemaTokens": 15649,
+            "promptTokens": 0,
+            "resourceTokens": 0
+          },
+          "heavyTools": [
+            {
+              "name": "pipelines_run_pipeline",
+              "tokens": 555
+            },
+            {
+              "name": "repo_search_commits",
+              "tokens": 535
+            },
+            {
+              "name": "pipelines_get_builds",
+              "tokens": 523
+            }
+          ],
+          "notes": "Measured on 2026-04-04 from Azure DevOps MCP Server 2.5.0. Static metadata listing succeeded in a non-production measurement setup; schema payload dominates the footprint."
+        }
+      ]
+    },
+    {
+      "id": "bedrock-kb-retrieval",
+      "name": "Bedrock KB Retrieval MCP Server",
+      "vendor": "AWS",
+      "category": "AI & Machine Learning",
+      "repoUrl": "https://github.com/awslabs/mcp/tree/main/src/bedrock-kb-retrieval-mcp-server",
+      "status": "measured",
+      "history": [
+        {
+          "version": "unknown",
+          "releasedAt": "2026-04-04",
+          "toolCount": 2,
+          "totals": {
+            "staticTokens": 1046,
+            "instructionsTokens": 178,
+            "toolNameTokens": 6,
+            "toolDescriptionTokens": 539,
+            "inputSchemaTokens": 323,
+            "promptTokens": 0,
+            "resourceTokens": 0
+          },
+          "heavyTools": [
+            {
+              "name": "QueryKnowledgeBases",
+              "tokens": 541
+            },
+            {
+              "name": "ListKnowledgeBases",
+              "tokens": 327
+            }
+          ],
+          "notes": "Measured on 2026-04-05 from Bedrock KB Retrieval MCP Server. Static metadata listing succeeded in a credentialed read-only measurement setup."
+        }
+      ]
+    },
+    {
+      "id": "billing-cost-management",
+      "name": "Billing Cost Management MCP Server",
+      "vendor": "AWS",
+      "category": "Cost & Operations",
+      "repoUrl": "https://github.com/awslabs/mcp/tree/main/src/billing-cost-management-mcp-server",
+      "status": "measured",
+      "history": [
+        {
+          "version": "unknown",
+          "releasedAt": "2026-04-04",
+          "toolCount": 25,
+          "totals": {
+            "staticTokens": 12233,
+            "instructionsTokens": 564,
+            "toolNameTokens": 106,
+            "toolDescriptionTokens": 8345,
+            "inputSchemaTokens": 3055,
+            "promptTokens": 163,
+            "resourceTokens": 0
+          },
+          "heavyTools": [
+            {
+              "name": "cost-explorer",
+              "tokens": 1964
+            },
+            {
+              "name": "storage-lens",
+              "tokens": 1070
+            },
+            {
+              "name": "cost-comparison",
+              "tokens": 781
+            }
+          ],
+          "notes": "Measured on 2026-04-05 from AWS Billing and Cost Management MCP Server. Static metadata listing succeeded in a credentialed read-only measurement setup. Upstream package emitted FastMCP deprecation warnings for import_server usage."
+        }
+      ]
+    },
+    {
+      "id": "brave-search",
+      "name": "Brave Search MCP Server",
+      "vendor": "Brave",
+      "category": "Search",
+      "repoUrl": "https://github.com/brave/brave-search-mcp-server",
+      "status": "measured",
+      "history": [
+        {
+          "version": "2.0.75",
+          "releasedAt": "2026-02-17",
+          "toolCount": 6,
+          "totals": {
+            "staticTokens": 4783,
+            "instructionsTokens": 18,
+            "toolNameTokens": 25,
+            "toolDescriptionTokens": 852,
+            "inputSchemaTokens": 3888,
+            "promptTokens": 0,
+            "resourceTokens": 0
+          },
+          "heavyTools": [
+            {
+              "name": "brave_local_search",
+              "tokens": 1322
+            },
+            {
+              "name": "brave_web_search",
+              "tokens": 1298
+            },
+            {
+              "name": "brave_news_search",
+              "tokens": 915
+            }
+          ],
+          "notes": "Measured on 2026-04-04 from Brave Search MCP Server 2.0.75. Static metadata listing succeeded in a non-production measurement setup."
+        }
+      ]
+    },
+    {
+      "id": "ccapi",
+      "name": "CCAPI MCP Server",
+      "vendor": "AWS",
+      "category": "Infrastructure & Deployment",
+      "repoUrl": "https://github.com/awslabs/mcp/tree/main/src/ccapi-mcp-server",
+      "status": "measured",
+      "history": [
+        {
+          "version": "unknown",
+          "releasedAt": "2026-04-04",
+          "toolCount": 14,
+          "totals": {
+            "staticTokens": 4913,
+            "instructionsTokens": 1200,
+            "toolNameTokens": 42,
+            "toolDescriptionTokens": 1489,
+            "inputSchemaTokens": 2182,
+            "promptTokens": 0,
+            "resourceTokens": 0
+          },
+          "heavyTools": [
+            {
+              "name": "create_template",
+              "tokens": 755
+            },
+            {
+              "name": "explain",
+              "tokens": 362
+            },
+            {
+              "name": "run_checkov",
+              "tokens": 357
+            }
+          ],
+          "notes": "Measured on 2026-04-05 from CCAPI MCP Server. Static metadata listing succeeded in a credentialed read-only measurement setup."
+        }
+      ]
+    },
+    {
+      "id": "cdk",
+      "name": "CDK MCP Server",
+      "vendor": "AWS",
+      "category": "Infrastructure as Code",
+      "repoUrl": "https://github.com/awslabs/mcp/tree/main/src/cdk-mcp-server",
+      "status": "measured",
+      "history": [
+        {
+          "version": "unknown",
+          "releasedAt": "2026-04-04",
+          "toolCount": 7,
+          "totals": {
+            "staticTokens": 1619,
+            "instructionsTokens": 0,
+            "toolNameTokens": 37,
+            "toolDescriptionTokens": 1094,
+            "inputSchemaTokens": 357,
+            "promptTokens": 0,
+            "resourceTokens": 131
+          },
+          "heavyTools": [
+            {
+              "name": "ExplainCDKNagRule",
+              "tokens": 352
+            },
+            {
+              "name": "GetAwsSolutionsConstructPattern",
+              "tokens": 317
+            },
+            {
+              "name": "SearchGenAICDKConstructs",
+              "tokens": 273
+            }
+          ],
+          "notes": "Measured on 2026-04-05 from CDK MCP Server. Static metadata listing succeeded in a credentialed read-only measurement setup."
+        }
+      ]
+    },
+    {
+      "id": "cfn",
+      "name": "CFN MCP Server",
+      "vendor": "AWS",
+      "category": "Infrastructure as Code",
+      "repoUrl": "https://github.com/awslabs/mcp/tree/main/src/cfn-mcp-server",
+      "status": "measured",
+      "history": [
+        {
+          "version": "unknown",
+          "releasedAt": "2026-04-04",
+          "toolCount": 8,
+          "totals": {
+            "staticTokens": 2548,
+            "instructionsTokens": 101,
+            "toolNameTokens": 20,
+            "toolDescriptionTokens": 1261,
+            "inputSchemaTokens": 1166,
+            "promptTokens": 0,
+            "resourceTokens": 0
+          },
+          "heavyTools": [
+            {
+              "name": "create_template",
+              "tokens": 607
+            },
+            {
+              "name": "update_resource",
+              "tokens": 367
+            },
+            {
+              "name": "delete_resource",
+              "tokens": 317
+            }
+          ],
+          "notes": "Measured on 2026-04-05 from CFN MCP Server. Static metadata listing succeeded in a credentialed read-only measurement setup."
+        }
+      ]
+    },
+    {
+      "id": "cloudflare-graphql",
+      "name": "Cloudflare GraphQL MCP Server",
+      "vendor": "Cloudflare",
+      "category": "Cloud Analytics",
+      "repoUrl": "https://github.com/cloudflare/mcp-server-cloudflare",
+      "status": "measured",
+      "history": [
+        {
+          "version": "remote",
+          "releasedAt": "2026-04-04",
+          "toolCount": 10,
+          "totals": {
+            "staticTokens": 2191,
+            "instructionsTokens": 0,
+            "toolNameTokens": 28,
+            "toolDescriptionTokens": 1153,
+            "inputSchemaTokens": 1010,
+            "promptTokens": 0,
+            "resourceTokens": 0
+          },
+          "heavyTools": [
+            {
+              "name": "graphql_schema_search",
+              "tokens": 415
+            },
+            {
+              "name": "graphql_query",
+              "tokens": 413
+            },
+            {
+              "name": "graphql_type_details",
+              "tokens": 365
+            }
+          ],
+          "notes": "Measured on 2026-04-04 from Cloudflare GraphQL MCP Server. Static metadata listing requires interactive browser authorization."
+        }
+      ]
+    },
+    {
+      "id": "cloudtrail",
+      "name": "CloudTrail MCP Server",
+      "vendor": "AWS",
+      "category": "Operations & Monitoring",
+      "repoUrl": "https://github.com/awslabs/mcp/tree/main/src/cloudtrail-mcp-server",
+      "status": "measured",
+      "history": [
+        {
+          "version": "unknown",
+          "releasedAt": "2026-04-04",
+          "toolCount": 5,
+          "totals": {
+            "staticTokens": 3284,
+            "instructionsTokens": 76,
+            "toolNameTokens": 15,
+            "toolDescriptionTokens": 2251,
+            "inputSchemaTokens": 942,
+            "promptTokens": 0,
+            "resourceTokens": 0
+          },
+          "heavyTools": [
+            {
+              "name": "lake_query",
+              "tokens": 1824
+            },
+            {
+              "name": "lookup_events",
+              "tokens": 608
+            },
+            {
+              "name": "get_query_results",
+              "tokens": 379
+            }
+          ],
+          "notes": "Measured on 2026-04-05 from CloudTrail MCP Server. Static metadata listing succeeded in a credentialed read-only measurement setup."
+        }
+      ]
+    },
+    {
+      "id": "cloudwatch-applicationsignals",
+      "name": "CloudWatch Applicationsignals MCP Server",
+      "vendor": "AWS",
+      "category": "Operations & Monitoring",
+      "repoUrl": "https://github.com/awslabs/mcp/tree/main/src/cloudwatch-applicationsignals-mcp-server",
+      "status": "measured",
+      "history": [
+        {
+          "version": "unknown",
+          "releasedAt": "2026-04-04",
+          "toolCount": 20,
+          "totals": {
+            "staticTokens": 15515,
+            "instructionsTokens": 0,
+            "toolNameTokens": 71,
+            "toolDescriptionTokens": 11700,
+            "inputSchemaTokens": 3744,
+            "promptTokens": 0,
+            "resourceTokens": 0
+          },
+          "heavyTools": [
+            {
+              "name": "audit_services",
+              "tokens": 2552
+            },
+            {
+              "name": "audit_service_operations",
+              "tokens": 2082
+            },
+            {
+              "name": "audit_slos",
+              "tokens": 1894
+            }
+          ],
+          "notes": "Measured on 2026-04-05 from CloudWatch Applicationsignals MCP Server. Static metadata listing succeeded in a credentialed read-only measurement setup."
+        }
+      ]
+    },
+    {
+      "id": "cloudwatch",
+      "name": "CloudWatch MCP Server",
+      "vendor": "AWS",
+      "category": "Operations & Monitoring",
+      "repoUrl": "https://github.com/awslabs/mcp/tree/main/src/cloudwatch-mcp-server",
+      "status": "measured",
+      "history": [
+        {
+          "version": "unknown",
+          "releasedAt": "2026-04-04",
+          "toolCount": 23,
+          "totals": {
+            "staticTokens": 11554,
+            "instructionsTokens": 106,
+            "toolNameTokens": 133,
+            "toolDescriptionTokens": 5034,
+            "inputSchemaTokens": 6281,
+            "promptTokens": 0,
+            "resourceTokens": 0
+          },
+          "heavyTools": [
+            {
+              "name": "get_metric_data",
+              "tokens": 1796
+            },
+            {
+              "name": "get_alarm_history",
+              "tokens": 889
+            },
+            {
+              "name": "get_recommended_metric_alarms",
+              "tokens": 867
+            }
+          ],
+          "notes": "Measured on 2026-04-05 from AWS CloudWatch MCP Server. Static metadata listing succeeded in a credentialed read-only measurement setup."
+        }
+      ]
+    },
+    {
+      "id": "code-doc-gen",
+      "name": "Code Doc Gen MCP Server",
+      "vendor": "AWS",
+      "category": "Developer Tools & Support",
+      "repoUrl": "https://github.com/awslabs/mcp/tree/main/src/code-doc-gen-mcp-server",
+      "status": "measured",
+      "history": [
+        {
+          "version": "unknown",
+          "releasedAt": "2026-04-04",
+          "toolCount": 4,
+          "totals": {
+            "staticTokens": 3849,
+            "instructionsTokens": 403,
+            "toolNameTokens": 10,
+            "toolDescriptionTokens": 638,
+            "inputSchemaTokens": 2798,
+            "promptTokens": 0,
+            "resourceTokens": 0
+          },
+          "heavyTools": [
+            {
+              "name": "generate_documentation",
+              "tokens": 1548
+            },
+            {
+              "name": "plan_documentation",
+              "tokens": 909
+            },
+            {
+              "name": "create_context",
+              "tokens": 724
+            }
+          ],
+          "notes": "Measured on 2026-04-05 from Code Doc Gen MCP Server. Static metadata listing succeeded in a credentialed read-only measurement setup."
+        }
+      ]
+    },
+    {
+      "id": "core",
+      "name": "Core MCP Server",
+      "vendor": "AWS",
+      "category": "Core Development Workflow",
+      "repoUrl": "https://github.com/awslabs/mcp/tree/main/src/core-mcp-server",
+      "status": "measured",
+      "history": [
+        {
+          "version": "unknown",
+          "releasedAt": "2026-04-04",
+          "toolCount": 1,
+          "totals": {
+            "staticTokens": 129,
+            "instructionsTokens": 83,
+            "toolNameTokens": 3,
+            "toolDescriptionTokens": 29,
+            "inputSchemaTokens": 14,
+            "promptTokens": 0,
+            "resourceTokens": 0
+          },
+          "heavyTools": [
+            {
+              "name": "prompt_understanding",
+              "tokens": 46
+            }
+          ],
+          "notes": "Measured on 2026-04-05 from Core MCP Server. Static metadata listing succeeded in a credentialed read-only measurement setup."
+        }
+      ]
+    },
+    {
+      "id": "datadog",
+      "name": "Datadog MCP Server",
+      "vendor": "Datadog",
+      "category": "Observability",
+      "repoUrl": "https://docs.datadoghq.com/bits_ai/mcp_server/",
+      "status": "measured",
+      "history": [
+        {
+          "version": "remote",
+          "releasedAt": "2026-04-04",
+          "toolCount": 22,
+          "totals": {
+            "staticTokens": 10533,
+            "instructionsTokens": 57,
+            "toolNameTokens": 118,
+            "toolDescriptionTokens": 1677,
+            "inputSchemaTokens": 8594,
+            "promptTokens": 0,
+            "resourceTokens": 87
+          },
+          "heavyTools": [
+            {
+              "name": "analyze_datadog_logs",
+              "tokens": 905
+            },
+            {
+              "name": "aggregate_spans",
+              "tokens": 635
+            },
+            {
+              "name": "search_datadog_spans",
+              "tokens": 633
+            }
+          ],
+          "notes": "Measured on 2026-04-04 from the official Datadog MCP remote using datadog_mcp_cli and interactive OAuth authorization."
+        }
+      ]
+    },
+    {
+      "id": "document-loader",
+      "name": "Document Loader MCP Server",
+      "vendor": "AWS",
+      "category": "Content Processing & Generation",
+      "repoUrl": "https://github.com/awslabs/mcp/tree/main/src/document-loader-mcp-server",
+      "status": "measured",
+      "history": [
+        {
+          "version": "unknown",
+          "releasedAt": "2026-04-04",
+          "toolCount": 3,
+          "totals": {
+            "staticTokens": 434,
+            "instructionsTokens": 0,
+            "toolNameTokens": 9,
+            "toolDescriptionTokens": 92,
+            "inputSchemaTokens": 333,
+            "promptTokens": 0,
+            "resourceTokens": 0
+          },
+          "heavyTools": [
+            {
+              "name": "extract_slides_as_images",
+              "tokens": 194
+            },
+            {
+              "name": "read_document",
+              "tokens": 133
+            },
+            {
+              "name": "read_image",
+              "tokens": 107
+            }
+          ],
+          "notes": "Measured on 2026-04-05 from Document Loader MCP Server. Static metadata listing succeeded in a credentialed read-only measurement setup."
+        }
+      ]
+    },
+    {
+      "id": "documentdb",
+      "name": "Documentdb MCP Server",
+      "vendor": "AWS",
+      "category": "SQL & NoSQL Databases",
+      "repoUrl": "https://github.com/awslabs/mcp/tree/main/src/documentdb-mcp-server",
+      "status": "measured",
+      "history": [
+        {
+          "version": "unknown",
+          "releasedAt": "2026-04-04",
+          "toolCount": 16,
+          "totals": {
+            "staticTokens": 2607,
+            "instructionsTokens": 101,
+            "toolNameTokens": 30,
+            "toolDescriptionTokens": 631,
+            "inputSchemaTokens": 1845,
+            "promptTokens": 0,
+            "resourceTokens": 0
+          },
+          "heavyTools": [
+            {
+              "name": "explainOperation",
+              "tokens": 274
+            },
+            {
+              "name": "update",
+              "tokens": 254
+            },
+            {
+              "name": "find",
+              "tokens": 241
+            }
+          ],
+          "notes": "Measured on 2026-04-05 from Documentdb MCP Server. Static metadata listing succeeded in a credentialed read-only measurement setup."
+        }
+      ]
+    },
+    {
+      "id": "dynamodb",
+      "name": "DynamoDB MCP Server",
+      "vendor": "AWS",
+      "category": "SQL & NoSQL Databases",
+      "repoUrl": "https://github.com/awslabs/mcp/tree/main/src/dynamodb-mcp-server",
+      "status": "measured",
+      "history": [
+        {
+          "version": "unknown",
+          "releasedAt": "2026-04-04",
+          "toolCount": 8,
+          "totals": {
+            "staticTokens": 7227,
+            "instructionsTokens": 783,
+            "toolNameTokens": 39,
+            "toolDescriptionTokens": 2725,
+            "inputSchemaTokens": 3680,
+            "promptTokens": 0,
+            "resourceTokens": 0
+          },
+          "heavyTools": [
+            {
+              "name": "compute_performances_and_costs",
+              "tokens": 3231
+            },
+            {
+              "name": "source_db_analyzer",
+              "tokens": 863
+            },
+            {
+              "name": "dynamodb_data_model_schema_validator",
+              "tokens": 511
+            }
+          ],
+          "notes": "Measured on 2026-04-05 from DynamoDB MCP Server. Static metadata listing succeeded in a credentialed read-only measurement setup."
+        }
+      ]
+    },
+    {
+      "id": "ecs",
+      "name": "ECS MCP Server",
+      "vendor": "AWS",
+      "category": "Container Platforms",
+      "repoUrl": "https://github.com/awslabs/mcp/tree/main/src/ecs-mcp-server",
+      "status": "measured",
+      "history": [
+        {
+          "version": "unknown",
+          "releasedAt": "2026-04-04",
+          "toolCount": 10,
+          "totals": {
+            "staticTokens": 9590,
+            "instructionsTokens": 912,
+            "toolNameTokens": 58,
+            "toolDescriptionTokens": 7086,
+            "inputSchemaTokens": 874,
+            "promptTokens": 660,
+            "resourceTokens": 0
+          },
+          "heavyTools": [
+            {
+              "name": "aws_knowledge_aws___search_documentation",
+              "tokens": 2062
+            },
+            {
+              "name": "ecs_troubleshooting_tool",
+              "tokens": 1323
+            },
+            {
+              "name": "aws_knowledge_aws___read_documentation",
+              "tokens": 924
+            }
+          ],
+          "notes": "Measured on 2026-04-05 from ECS MCP Server. Static metadata listing succeeded in a credentialed read-only measurement setup. Upstream package emitted a FastMCP deprecation warning for add_tool_transformation usage."
+        }
+      ]
+    },
+    {
+      "id": "eks",
+      "name": "EKS MCP Server",
+      "vendor": "AWS",
+      "category": "Container Platforms",
+      "repoUrl": "https://github.com/awslabs/mcp/tree/main/src/eks-mcp-server",
+      "status": "measured",
+      "history": [
+        {
+          "version": "unknown",
+          "releasedAt": "2026-04-04",
+          "toolCount": 16,
+          "totals": {
+            "staticTokens": 9610,
+            "instructionsTokens": 673,
+            "toolNameTokens": 73,
+            "toolDescriptionTokens": 4975,
+            "inputSchemaTokens": 3889,
+            "promptTokens": 0,
+            "resourceTokens": 0
+          },
+          "heavyTools": [
+            {
+              "name": "get_cloudwatch_metrics",
+              "tokens": 1123
+            },
+            {
+              "name": "get_cloudwatch_logs",
+              "tokens": 1067
+            },
+            {
+              "name": "manage_k8s_resource",
+              "tokens": 808
+            }
+          ],
+          "notes": "Measured on 2026-04-05 from EKS MCP Server. Static metadata listing succeeded in a credentialed read-only measurement setup."
+        }
+      ]
+    },
+    {
+      "id": "elasticache",
+      "name": "Elasticache MCP Server",
+      "vendor": "AWS",
+      "category": "Caching & Performance",
+      "repoUrl": "https://github.com/awslabs/mcp/tree/main/src/elasticache-mcp-server",
+      "status": "measured",
+      "history": [
+        {
+          "version": "unknown",
+          "releasedAt": "2026-04-04",
+          "toolCount": 39,
+          "totals": {
+            "staticTokens": 17685,
+            "instructionsTokens": 51,
+            "toolNameTokens": 201,
+            "toolDescriptionTokens": 6246,
+            "inputSchemaTokens": 11187,
+            "promptTokens": 0,
+            "resourceTokens": 0
+          },
+          "heavyTools": [
+            {
+              "name": "create-replication-group",
+              "tokens": 1940
+            },
+            {
+              "name": "create-serverless-cache",
+              "tokens": 1559
+            },
+            {
+              "name": "create-cache-cluster",
+              "tokens": 1119
+            }
+          ],
+          "notes": "Measured on 2026-04-05 from Elasticache MCP Server. Static metadata listing succeeded in a credentialed read-only measurement setup."
+        }
+      ]
+    },
+    {
+      "id": "finch",
+      "name": "Finch MCP Server",
+      "vendor": "AWS",
+      "category": "Container Platforms",
+      "repoUrl": "https://github.com/awslabs/mcp/tree/main/src/finch-mcp-server",
+      "status": "measured",
+      "history": [
+        {
+          "version": "unknown",
+          "releasedAt": "2026-04-04",
+          "toolCount": 3,
+          "totals": {
+            "staticTokens": 1226,
+            "instructionsTokens": 0,
+            "toolNameTokens": 15,
+            "toolDescriptionTokens": 607,
+            "inputSchemaTokens": 604,
+            "promptTokens": 0,
+            "resourceTokens": 0
+          },
+          "heavyTools": [
+            {
+              "name": "finch_build_container_image",
+              "tokens": 624
+            },
+            {
+              "name": "finch_push_image",
+              "tokens": 320
+            },
+            {
+              "name": "finch_create_ecr_repo",
+              "tokens": 282
+            }
+          ],
+          "notes": "Measured on 2026-04-05 from Finch MCP Server. Static metadata listing succeeded in a credentialed read-only measurement setup."
+        }
+      ]
+    },
+    {
+      "id": "frontend",
+      "name": "Frontend MCP Server",
+      "vendor": "AWS",
+      "category": "Application Development",
+      "repoUrl": "https://github.com/awslabs/mcp/tree/main/src/frontend-mcp-server",
+      "status": "measured",
+      "history": [
+        {
+          "version": "unknown",
+          "releasedAt": "2026-04-04",
+          "toolCount": 1,
+          "totals": {
+            "staticTokens": 247,
+            "instructionsTokens": 110,
+            "toolNameTokens": 5,
+            "toolDescriptionTokens": 69,
+            "inputSchemaTokens": 63,
+            "promptTokens": 0,
+            "resourceTokens": 0
+          },
+          "heavyTools": [
+            {
+              "name": "GetReactDocsByTopic",
+              "tokens": 137
+            }
+          ],
+          "notes": "Measured on 2026-04-05 from Frontend MCP Server. Static metadata listing succeeded in a credentialed read-only measurement setup."
+        }
+      ]
+    },
+    {
+      "id": "git-repo-research",
+      "name": "Git Repo Research MCP Server",
+      "vendor": "AWS",
+      "category": "Developer Tools & Support",
+      "repoUrl": "https://github.com/awslabs/mcp/tree/main/src/git-repo-research-mcp-server",
+      "status": "measured",
+      "history": [
+        {
+          "version": "unknown",
+          "releasedAt": "2026-04-04",
+          "toolCount": 5,
+          "totals": {
+            "staticTokens": 2925,
+            "instructionsTokens": 871,
+            "toolNameTokens": 20,
+            "toolDescriptionTokens": 771,
+            "inputSchemaTokens": 1196,
+            "promptTokens": 0,
+            "resourceTokens": 67
+          },
+          "heavyTools": [
+            {
+              "name": "create_research_repository",
+              "tokens": 1018
+            },
+            {
+              "name": "search_repos_on_github",
+              "tokens": 302
+            },
+            {
+              "name": "search_research_repository",
+              "tokens": 249
+            }
+          ],
+          "notes": "Measured on 2026-04-05 from Git Repo Research MCP Server. Static metadata listing succeeded in a credentialed read-only measurement setup."
+        }
+      ]
+    },
+    {
+      "id": "github-all",
+      "name": "GitHub MCP Server (all toolsets)",
+      "vendor": "GitHub",
+      "category": "Source Control",
+      "repoUrl": "https://github.com/github/github-mcp-server",
+      "status": "measured",
+      "history": [
+        {
+          "version": "0.33.0",
+          "releasedAt": "2026-03-06",
+          "toolCount": 79,
+          "totals": {
+            "staticTokens": 14532,
+            "instructionsTokens": 1380,
+            "toolNameTokens": 259,
+            "toolDescriptionTokens": 1671,
+            "inputSchemaTokens": 11070,
+            "promptTokens": 152,
+            "resourceTokens": 0
+          },
+          "heavyTools": [
+            {
+              "name": "actions_list",
+              "tokens": 567
+            },
+            {
+              "name": "projects_write",
+              "tokens": 563
+            },
+            {
+              "name": "pull_request_read",
+              "tokens": 434
+            }
+          ],
+          "notes": "Measured on 2026-04-04 from GitHub MCP Server 0.33.0 with toolsets=all. Static metadata listing succeeded in a non-production measurement setup."
+        }
+      ]
+    },
+    {
+      "id": "github-default-actions-code-security",
+      "name": "GitHub MCP Server (default + actions + code_security)",
+      "vendor": "GitHub",
+      "category": "Source Control",
+      "repoUrl": "https://github.com/github/github-mcp-server",
+      "status": "measured",
+      "history": [
+        {
+          "version": "0.33.0",
+          "releasedAt": "2026-03-06",
+          "toolCount": 47,
+          "totals": {
+            "staticTokens": 8784,
+            "instructionsTokens": 377,
+            "toolNameTokens": 144,
+            "toolDescriptionTokens": 1165,
+            "inputSchemaTokens": 6946,
+            "promptTokens": 152,
+            "resourceTokens": 0
+          },
+          "heavyTools": [
+            {
+              "name": "actions_list",
+              "tokens": 567
+            },
+            {
+              "name": "pull_request_read",
+              "tokens": 434
+            },
+            {
+              "name": "issue_write",
+              "tokens": 345
+            }
+          ],
+          "notes": "Measured on 2026-04-04 from GitHub MCP Server 0.33.0 with toolsets=default,actions,code_security. Static metadata listing succeeded in a non-production measurement setup."
+        }
+      ]
+    },
+    {
+      "id": "github-default",
+      "name": "GitHub MCP Server (default)",
+      "vendor": "GitHub",
+      "category": "Source Control",
+      "repoUrl": "https://github.com/github/github-mcp-server",
+      "status": "measured",
+      "history": [
+        {
+          "version": "0.33.0",
+          "releasedAt": "2026-03-06",
+          "toolCount": 41,
+          "totals": {
+            "staticTokens": 7242,
+            "instructionsTokens": 377,
+            "toolNameTokens": 123,
+            "toolDescriptionTokens": 999,
+            "inputSchemaTokens": 5591,
+            "promptTokens": 152,
+            "resourceTokens": 0
+          },
+          "heavyTools": [
+            {
+              "name": "pull_request_read",
+              "tokens": 434
+            },
+            {
+              "name": "issue_write",
+              "tokens": 345
+            },
+            {
+              "name": "sub_issue_write",
+              "tokens": 322
+            }
+          ],
+          "notes": "Measured on 2026-04-04 from GitHub MCP Server 0.33.0 with toolsets=default. Static metadata listing succeeded in a non-production measurement setup."
+        }
+      ]
+    },
+    {
+      "id": "healthimaging",
+      "name": "Healthimaging MCP Server",
+      "vendor": "AWS",
+      "category": "Healthcare & Lifesciences",
+      "repoUrl": "https://github.com/awslabs/mcp/tree/main/src/healthimaging-mcp-server",
+      "status": "measured",
+      "history": [
+        {
+          "version": "unknown",
+          "releasedAt": "2026-04-04",
+          "toolCount": 39,
+          "totals": {
+            "staticTokens": 5466,
+            "instructionsTokens": 671,
+            "toolNameTokens": 161,
+            "toolDescriptionTokens": 337,
+            "inputSchemaTokens": 4297,
+            "promptTokens": 0,
+            "resourceTokens": 0
+          },
+          "heavyTools": [
+            {
+              "name": "start_dicom_export_job",
+              "tokens": 376
+            },
+            {
+              "name": "start_dicom_import_job",
+              "tokens": 269
+            },
+            {
+              "name": "list_dicom_export_jobs",
+              "tokens": 177
+            }
+          ],
+          "notes": "Measured on 2026-04-05 from Healthimaging MCP Server. Static metadata listing succeeded in a credentialed read-only measurement setup."
+        }
+      ]
+    },
+    {
+      "id": "healthlake",
+      "name": "Healthlake MCP Server",
+      "vendor": "AWS",
+      "category": "Healthcare & Lifesciences",
+      "repoUrl": "https://github.com/awslabs/mcp/tree/main/src/healthlake-mcp-server",
+      "status": "measured",
+      "history": [
+        {
+          "version": "unknown",
+          "releasedAt": "2026-04-04",
+          "toolCount": 11,
+          "totals": {
+            "staticTokens": 1546,
+            "instructionsTokens": 0,
+            "toolNameTokens": 45,
+            "toolDescriptionTokens": 144,
+            "inputSchemaTokens": 1357,
+            "promptTokens": 0,
+            "resourceTokens": 0
+          },
+          "heavyTools": [
+            {
+              "name": "search_fhir_resources",
+              "tokens": 423
+            },
+            {
+              "name": "start_fhir_import_job",
+              "tokens": 231
+            },
+            {
+              "name": "patient_everything",
+              "tokens": 182
+            }
+          ],
+          "notes": "Measured on 2026-04-05 from Healthlake MCP Server. Static metadata listing succeeded in a credentialed read-only measurement setup."
+        }
+      ]
+    },
+    {
+      "id": "iam",
+      "name": "IAM MCP Server",
+      "vendor": "AWS",
+      "category": "Security & Identity",
+      "repoUrl": "https://github.com/awslabs/mcp/tree/main/src/iam-mcp-server",
+      "status": "measured",
+      "history": [
+        {
+          "version": "unknown",
+          "releasedAt": "2026-04-04",
+          "toolCount": 29,
+          "totals": {
+            "staticTokens": 9458,
+            "instructionsTokens": 389,
+            "toolNameTokens": 84,
+            "toolDescriptionTokens": 2110,
+            "inputSchemaTokens": 6875,
+            "promptTokens": 0,
+            "resourceTokens": 0
+          },
+          "heavyTools": [
+            {
+              "name": "create_user",
+              "tokens": 1746
+            },
+            {
+              "name": "list_users",
+              "tokens": 1713
+            },
+            {
+              "name": "get_user",
+              "tokens": 1659
+            }
+          ],
+          "notes": "Measured on 2026-04-05 from AWS IAM MCP Server. Static metadata listing succeeded in a credentialed read-only measurement setup."
+        }
+      ]
+    },
+    {
+      "id": "lambda-tool",
+      "name": "Lambda Tool MCP Server",
+      "vendor": "AWS",
+      "category": "Serverless & Functions",
+      "repoUrl": "https://github.com/awslabs/mcp/tree/main/src/lambda-tool-mcp-server",
+      "status": "measured",
+      "history": [
+        {
+          "version": "unknown",
+          "releasedAt": "2026-04-04",
+          "toolCount": 0,
+          "totals": {
+            "staticTokens": 29,
+            "instructionsTokens": 29,
+            "toolNameTokens": 0,
+            "toolDescriptionTokens": 0,
+            "inputSchemaTokens": 0,
+            "promptTokens": 0,
+            "resourceTokens": 0
+          },
+          "heavyTools": [],
+          "notes": "Measured on 2026-04-05 from Lambda Tool MCP Server. Static metadata listing succeeded in a credentialed read-only measurement setup."
+        }
+      ]
+    },
+    {
+      "id": "launchdarkly",
+      "name": "LaunchDarkly MCP Server",
+      "vendor": "LaunchDarkly",
+      "category": "Feature Flags",
+      "repoUrl": "https://github.com/launchdarkly/mcp-server",
+      "status": "measured",
+      "history": [
+        {
+          "version": "unknown",
+          "releasedAt": "2026-04-04",
+          "toolCount": 19,
+          "totals": {
+            "staticTokens": 3530,
+            "instructionsTokens": 0,
+            "toolNameTokens": 81,
+            "toolDescriptionTokens": 459,
+            "inputSchemaTokens": 2990,
+            "promptTokens": 0,
+            "resourceTokens": 0
+          },
+          "heavyTools": [
+            {
+              "name": "create-feature-flag",
+              "tokens": 497
+            },
+            {
+              "name": "create-ai-config",
+              "tokens": 448
+            },
+            {
+              "name": "update-ai-config-variation",
+              "tokens": 352
+            }
+          ],
+          "notes": "Measured on 2026-04-04 from LaunchDarkly MCP Server. Static metadata listing succeeded in a non-production measurement setup."
+        }
+      ]
+    },
+    {
+      "id": "linear",
+      "name": "Linear MCP Server",
+      "vendor": "Linear",
+      "category": "Issue Tracking",
+      "repoUrl": "https://linear.app/docs/mcp",
+      "status": "measured",
+      "history": [
+        {
+          "version": "remote",
+          "releasedAt": "2026-04-04",
+          "toolCount": 32,
+          "totals": {
+            "staticTokens": 5131,
+            "instructionsTokens": 36,
+            "toolNameTokens": 78,
+            "toolDescriptionTokens": 622,
+            "inputSchemaTokens": 4395,
+            "promptTokens": 0,
+            "resourceTokens": 0
+          },
+          "heavyTools": [
+            {
+              "name": "save_issue",
+              "tokens": 700
+            },
+            {
+              "name": "save_project",
+              "tokens": 499
+            },
+            {
+              "name": "list_issues",
+              "tokens": 403
+            }
+          ],
+          "notes": "Measured on 2026-04-04 from the official Linear MCP remote. Static metadata listing succeeded after interactive OAuth authorization."
+        }
+      ]
+    },
+    {
+      "id": "memcached",
+      "name": "Memcached MCP Server",
+      "vendor": "AWS",
+      "category": "Caching & Performance",
+      "repoUrl": "https://github.com/awslabs/mcp/tree/main/src/memcached-mcp-server",
+      "status": "measured",
+      "history": [
+        {
+          "version": "unknown",
+          "releasedAt": "2026-04-04",
+          "toolCount": 22,
+          "totals": {
+            "staticTokens": 1804,
+            "instructionsTokens": 65,
+            "toolNameTokens": 57,
+            "toolDescriptionTokens": 745,
+            "inputSchemaTokens": 937,
+            "promptTokens": 0,
+            "resourceTokens": 0
+          },
+          "heavyTools": [
+            {
+              "name": "cache_cas",
+              "tokens": 133
+            },
+            {
+              "name": "cache_add",
+              "tokens": 113
+            },
+            {
+              "name": "cache_replace",
+              "tokens": 111
+            }
+          ],
+          "notes": "Measured on 2026-04-05 from Memcached MCP Server. Static metadata listing succeeded in a credentialed read-only measurement setup."
+        }
+      ]
+    },
+    {
+      "id": "notion",
+      "name": "Notion MCP Server",
+      "vendor": "Notion",
+      "category": "Knowledge Base",
+      "repoUrl": "https://github.com/makenotion/notion-mcp-server",
+      "status": "measured",
+      "history": [
+        {
+          "version": "2.0.0",
+          "releasedAt": "2026-01-16",
+          "toolCount": 22,
+          "totals": {
+            "staticTokens": 15478,
+            "instructionsTokens": 0,
+            "toolNameTokens": 99,
+            "toolDescriptionTokens": 318,
+            "inputSchemaTokens": 15061,
+            "promptTokens": 0,
+            "resourceTokens": 0
+          },
+          "heavyTools": [
+            {
+              "name": "API-post-search",
+              "tokens": 1090
+            },
+            {
+              "name": "API-patch-page",
+              "tokens": 876
+            },
+            {
+              "name": "API-post-page",
+              "tokens": 797
+            }
+          ],
+          "notes": "Measured on 2026-04-04 from Notion MCP Server 2.0.0. Static metadata listing succeeded in a non-production measurement setup; schema payload dominates the footprint."
+        }
+      ]
+    },
+    {
+      "id": "nova-canvas",
+      "name": "Nova Canvas MCP Server",
+      "vendor": "AWS",
+      "category": "AI & Machine Learning",
+      "repoUrl": "https://github.com/awslabs/mcp/tree/main/src/nova-canvas-mcp-server",
+      "status": "measured",
+      "history": [
+        {
+          "version": "unknown",
+          "releasedAt": "2026-04-04",
+          "toolCount": 2,
+          "totals": {
+            "staticTokens": 2162,
+            "instructionsTokens": 666,
+            "toolNameTokens": 6,
+            "toolDescriptionTokens": 622,
+            "inputSchemaTokens": 868,
+            "promptTokens": 0,
+            "resourceTokens": 0
+          },
+          "heavyTools": [
+            {
+              "name": "generate_image_with_colors",
+              "tokens": 754
+            },
+            {
+              "name": "generate_image",
+              "tokens": 742
+            }
+          ],
+          "notes": "Measured on 2026-04-05 from Nova Canvas MCP Server. Static metadata listing succeeded in a credentialed read-only measurement setup."
+        }
+      ]
+    },
+    {
+      "id": "pagerduty",
+      "name": "PagerDuty MCP Server",
+      "vendor": "PagerDuty",
+      "category": "Incident Response",
+      "repoUrl": "https://github.com/PagerDuty/pagerduty-mcp-server",
+      "status": "measured",
+      "history": [
+        {
+          "version": "0.15.1",
+          "releasedAt": "2026-03-12",
+          "toolCount": 42,
+          "totals": {
+            "staticTokens": 8652,
+            "instructionsTokens": 61,
+            "toolNameTokens": 171,
+            "toolDescriptionTokens": 1732,
+            "inputSchemaTokens": 6688,
+            "promptTokens": 0,
+            "resourceTokens": 0
+          },
+          "heavyTools": [
+            {
+              "name": "list_incidents",
+              "tokens": 713
+            },
+            {
+              "name": "list_log_entries",
+              "tokens": 541
+            },
+            {
+              "name": "list_oncalls",
+              "tokens": 480
+            }
+          ],
+          "notes": "Measured on 2026-04-04 from PagerDuty MCP 0.15.1. Tool definitions were enumerable even though authenticated initialization did not succeed."
+        }
+      ]
+    },
+    {
+      "id": "playwright",
+      "name": "Playwright MCP",
+      "vendor": "Microsoft",
+      "category": "Browser Automation",
+      "repoUrl": "https://github.com/microsoft/playwright-mcp",
+      "status": "measured",
+      "history": [
+        {
+          "version": "unknown",
+          "releasedAt": "2026-04-04",
+          "toolCount": 21,
+          "totals": {
+            "staticTokens": 2491,
+            "instructionsTokens": 0,
+            "toolNameTokens": 57,
+            "toolDescriptionTokens": 153,
+            "inputSchemaTokens": 2281,
+            "promptTokens": 0,
+            "resourceTokens": 0
+          },
+          "heavyTools": [
+            {
+              "name": "browser_take_screenshot",
+              "tokens": 257
+            },
+            {
+              "name": "browser_fill_form",
+              "tokens": 229
+            },
+            {
+              "name": "browser_network_requests",
+              "tokens": 188
+            }
+          ],
+          "notes": "Measured on 2026-04-04 from Playwright MCP using the public package defaults. Static metadata listing succeeded without credentials."
+        }
+      ]
+    },
+    {
+      "id": "redshift",
+      "name": "Redshift MCP Server",
+      "vendor": "AWS",
+      "category": "SQL & NoSQL Databases",
+      "repoUrl": "https://github.com/awslabs/mcp/tree/main/src/redshift-mcp-server",
+      "status": "measured",
+      "history": [
+        {
+          "version": "unknown",
+          "releasedAt": "2026-04-04",
+          "toolCount": 6,
+          "totals": {
+            "staticTokens": 3939,
+            "instructionsTokens": 537,
+            "toolNameTokens": 14,
+            "toolDescriptionTokens": 2728,
+            "inputSchemaTokens": 660,
+            "promptTokens": 0,
+            "resourceTokens": 0
+          },
+          "heavyTools": [
+            {
+              "name": "list_columns",
+              "tokens": 734
+            },
+            {
+              "name": "list_tables",
+              "tokens": 625
+            },
+            {
+              "name": "execute_query",
+              "tokens": 591
+            }
+          ],
+          "notes": "Measured on 2026-04-05 from Redshift MCP Server. Static metadata listing succeeded in a credentialed read-only measurement setup."
+        }
+      ]
+    },
+    {
+      "id": "s3-tables",
+      "name": "S3 Tables MCP Server",
+      "vendor": "AWS",
+      "category": "Data & Analytics",
+      "repoUrl": "https://github.com/awslabs/mcp/tree/main/src/s3-tables-mcp-server",
+      "status": "measured",
+      "history": [
+        {
+          "version": "unknown",
+          "releasedAt": "2026-04-04",
+          "toolCount": 16,
+          "totals": {
+            "staticTokens": 7007,
+            "instructionsTokens": 77,
+            "toolNameTokens": 55,
+            "toolDescriptionTokens": 2737,
+            "inputSchemaTokens": 4138,
+            "promptTokens": 0,
+            "resourceTokens": 0
+          },
+          "heavyTools": [
+            {
+              "name": "create_table",
+              "tokens": 1132
+            },
+            {
+              "name": "import_parquet_to_table",
+              "tokens": 767
+            },
+            {
+              "name": "import_csv_to_table",
+              "tokens": 729
+            }
+          ],
+          "notes": "Measured on 2026-04-05 from S3 Tables MCP Server. Static metadata listing succeeded in a credentialed read-only measurement setup."
+        }
+      ]
+    },
+    {
+      "id": "sagemaker-ai",
+      "name": "SageMaker Ai MCP Server",
+      "vendor": "AWS",
+      "category": "AI & Machine Learning",
+      "repoUrl": "https://github.com/awslabs/mcp/tree/main/src/sagemaker-ai-mcp-server",
+      "status": "measured",
+      "history": [
+        {
+          "version": "unknown",
+          "releasedAt": "2026-04-04",
+          "toolCount": 4,
+          "totals": {
+            "staticTokens": 7292,
+            "instructionsTokens": 885,
+            "toolNameTokens": 18,
+            "toolDescriptionTokens": 3890,
+            "inputSchemaTokens": 2499,
+            "promptTokens": 0,
+            "resourceTokens": 0
+          },
+          "heavyTools": [
+            {
+              "name": "manage_hyperpod_cluster_nodes",
+              "tokens": 2884
+            },
+            {
+              "name": "manage_hyperpod_stacks",
+              "tokens": 2323
+            },
+            {
+              "name": "update_hp_cluster",
+              "tokens": 855
+            }
+          ],
+          "notes": "Measured on 2026-04-05 from SageMaker Ai MCP Server. Static metadata listing succeeded in a credentialed read-only measurement setup."
+        }
+      ]
+    },
+    {
+      "id": "stepfunctions-tool",
+      "name": "Stepfunctions Tool MCP Server",
+      "vendor": "AWS",
+      "category": "Workflow & Integration",
+      "repoUrl": "https://github.com/awslabs/mcp/tree/main/src/stepfunctions-tool-mcp-server",
+      "status": "measured",
+      "history": [
+        {
+          "version": "unknown",
+          "releasedAt": "2026-04-04",
+          "toolCount": 0,
+          "totals": {
+            "staticTokens": 31,
+            "instructionsTokens": 31,
+            "toolNameTokens": 0,
+            "toolDescriptionTokens": 0,
+            "inputSchemaTokens": 0,
+            "promptTokens": 0,
+            "resourceTokens": 0
+          },
+          "heavyTools": [],
+          "notes": "Measured on 2026-04-05 from Stepfunctions Tool MCP Server. Static metadata listing succeeded in a credentialed read-only measurement setup."
+        }
+      ]
+    },
+    {
+      "id": "syntheticdata",
+      "name": "Syntheticdata MCP Server",
+      "vendor": "AWS",
+      "category": "AI & Machine Learning",
+      "repoUrl": "https://github.com/awslabs/mcp/tree/main/src/syntheticdata-mcp-server",
+      "status": "measured",
+      "history": [
+        {
+          "version": "unknown",
+          "releasedAt": "2026-04-04",
+          "toolCount": 4,
+          "totals": {
+            "staticTokens": 2036,
+            "instructionsTokens": 302,
+            "toolNameTokens": 16,
+            "toolDescriptionTokens": 695,
+            "inputSchemaTokens": 1023,
+            "promptTokens": 0,
+            "resourceTokens": 0
+          },
+          "heavyTools": [
+            {
+              "name": "execute_pandas_code",
+              "tokens": 705
+            },
+            {
+              "name": "load_to_storage",
+              "tokens": 463
+            },
+            {
+              "name": "validate_and_save_data",
+              "tokens": 433
+            }
+          ],
+          "notes": "Measured on 2026-04-05 from Syntheticdata MCP Server. Static metadata listing succeeded in a credentialed read-only measurement setup."
+        }
+      ]
+    },
+    {
+      "id": "terraform",
+      "name": "Terraform MCP Server",
+      "vendor": "AWS",
+      "category": "Infrastructure as Code",
+      "repoUrl": "https://github.com/awslabs/mcp/tree/main/src/terraform-mcp-server",
+      "status": "measured",
+      "history": [
+        {
+          "version": "unknown",
+          "releasedAt": "2026-04-04",
+          "toolCount": 7,
+          "totals": {
+            "staticTokens": 4858,
+            "instructionsTokens": 1575,
+            "toolNameTokens": 30,
+            "toolDescriptionTokens": 2040,
+            "inputSchemaTokens": 1104,
+            "promptTokens": 0,
+            "resourceTokens": 109
+          },
+          "heavyTools": [
+            {
+              "name": "ExecuteTerragruntCommand",
+              "tokens": 609
+            },
+            {
+              "name": "SearchAwsccProviderDocs",
+              "tokens": 558
+            },
+            {
+              "name": "SearchAwsProviderDocs",
+              "tokens": 455
+            }
+          ],
+          "notes": "Measured on 2026-04-05 from AWS Terraform MCP Server. Static metadata listing succeeded in a credentialed read-only measurement setup."
+        }
+      ]
+    },
+    {
+      "id": "timestream-for-influxdb",
+      "name": "Timestream For Influxdb MCP Server",
+      "vendor": "AWS",
+      "category": "Data & Analytics",
+      "repoUrl": "https://github.com/awslabs/mcp/tree/main/src/timestream-for-influxdb-mcp-server",
+      "status": "measured",
+      "history": [
+        {
+          "version": "unknown",
+          "releasedAt": "2026-04-04",
+          "toolCount": 26,
+          "totals": {
+            "staticTokens": 6291,
+            "instructionsTokens": 50,
+            "toolNameTokens": 98,
+            "toolDescriptionTokens": 357,
+            "inputSchemaTokens": 5786,
+            "promptTokens": 0,
+            "resourceTokens": 0
+          },
+          "heavyTools": [
+            {
+              "name": "CreateDbCluster",
+              "tokens": 941
+            },
+            {
+              "name": "CreateDbInstance",
+              "tokens": 846
+            },
+            {
+              "name": "UpdateDbInstance",
+              "tokens": 433
+            }
+          ],
+          "notes": "Measured on 2026-04-05 from Timestream For Influxdb MCP Server. Static metadata listing succeeded in a credentialed read-only measurement setup."
+        }
+      ]
+    },
+    {
+      "id": "valkey",
+      "name": "Valkey MCP Server",
+      "vendor": "AWS",
+      "category": "Caching & Performance",
+      "repoUrl": "https://github.com/awslabs/mcp/tree/main/src/valkey-mcp-server",
+      "status": "measured",
+      "history": [
+        {
+          "version": "unknown",
+          "releasedAt": "2026-04-04",
+          "toolCount": 105,
+          "totals": {
+            "staticTokens": 10737,
+            "instructionsTokens": 65,
+            "toolNameTokens": 287,
+            "toolDescriptionTokens": 4614,
+            "inputSchemaTokens": 5771,
+            "promptTokens": 0,
+            "resourceTokens": 0
+          },
+          "heavyTools": [
+            {
+              "name": "sorted_set_range_by_score",
+              "tokens": 238
+            },
+            {
+              "name": "string_set",
+              "tokens": 224
+            },
+            {
+              "name": "sorted_set_range_by_lex",
+              "tokens": 217
+            }
+          ],
+          "notes": "Measured on 2026-04-05 from Valkey MCP Server. Static metadata listing succeeded in a credentialed read-only measurement setup."
+        }
+      ]
+    },
+    {
+      "id": "well-architected-security",
+      "name": "Well Architected Security MCP Server",
+      "vendor": "AWS",
+      "category": "Security & Identity",
+      "repoUrl": "https://github.com/awslabs/mcp/tree/main/src/well-architected-security-mcp-server",
+      "status": "measured",
+      "history": [
+        {
+          "version": "unknown",
+          "releasedAt": "2026-04-04",
+          "toolCount": 6,
+          "totals": {
+            "staticTokens": 3057,
+            "instructionsTokens": 609,
+            "toolNameTokens": 21,
+            "toolDescriptionTokens": 997,
+            "inputSchemaTokens": 1151,
+            "promptTokens": 279,
+            "resourceTokens": 0
+          },
+          "heavyTools": [
+            {
+              "name": "GetSecurityFindings",
+              "tokens": 453
+            },
+            {
+              "name": "CheckSecurityServices",
+              "tokens": 441
+            },
+            {
+              "name": "CheckNetworkSecurity",
+              "tokens": 395
+            }
+          ],
+          "notes": "Measured on 2026-04-05 from Well Architected Security MCP Server. Static metadata listing succeeded in a credentialed read-only measurement setup."
+        }
+      ]
+    }
+  ]
+}

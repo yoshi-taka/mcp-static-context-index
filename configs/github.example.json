@@ -1,0 +1,27 @@
+{
+  "id": "github",
+  "name": "GitHub MCP Server",
+  "vendor": "GitHub",
+  "category": "Source Control",
+  "repoUrl": "https://github.com/github/github-mcp-server",
+  "version": "replace-me",
+  "releasedAt": "2026-04-04",
+  "status": "measured",
+  "transport": {
+    "command": "docker",
+    "args": [
+      "run",
+      "-i",
+      "--rm",
+      "-e",
+      "GITHUB_PERSONAL_ACCESS_TOKEN",
+      "-e",
+      "GITHUB_TOOLSETS",
+      "ghcr.io/github/github-mcp-server"
+    ],
+    "env": {
+      "GITHUB_PERSONAL_ACCESS_TOKEN": "replace-me",
+      "GITHUB_TOOLSETS": "default"
+    }
+  }
+}

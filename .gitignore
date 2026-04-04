@@ -1,0 +1,11 @@
+.astro/
+dist/
+node_modules/
+vendor/
+.tmp/
+
+docs/internal/
+
+configs/*.local.json
+snapshots/*.json
+!snapshots/.gitkeep

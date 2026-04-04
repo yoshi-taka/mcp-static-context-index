@@ -1,0 +1,14 @@
+{
+  "id": "mock-pagerduty",
+  "name": "Mock PagerDuty MCP",
+  "vendor": "Local Fixture",
+  "category": "Incident Response",
+  "repoUrl": "https://github.com/PagerDuty/pagerduty-mcp-server",
+  "version": "0.0.1",
+  "releasedAt": "2026-04-04",
+  "status": "demo",
+  "transport": {
+    "command": "bun",
+    "args": ["run", "scripts/mock-mcp-server.ts"]
+  }
+}

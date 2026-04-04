@@ -1,0 +1,12 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="630" fill="#F3EFE4"/>
+  <rect x="36" y="36" width="1128" height="558" rx="28" fill="#FFF9EE" stroke="#D7CFC0"/>
+  <circle cx="1038" cy="110" r="110" fill="#E8B48C" fill-opacity="0.45"/>
+  <circle cx="154" cy="530" r="148" fill="#D9B25A" fill-opacity="0.22"/>
+  <text x="84" y="122" fill="#B33B16" font-family="IBM Plex Mono, Menlo, monospace" font-size="24" letter-spacing="2">STATIC CONTEXT BENCHMARK</text>
+  <text x="84" y="250" fill="#182126" font-family="Georgia, serif" font-size="86" font-weight="700">MCP Static</text>
+  <text x="84" y="340" fill="#182126" font-family="Georgia, serif" font-size="86" font-weight="700">Context Index</text>
+  <text x="84" y="418" fill="#5C676B" font-family="Georgia, serif" font-size="32">Measure static exposure. Compare the heaviest servers.</text>
+  <text x="84" y="464" fill="#5C676B" font-family="Georgia, serif" font-size="32">Show which vendors actually reduce context.</text>
+  <text x="84" y="546" fill="#24543A" font-family="IBM Plex Mono, Menlo, monospace" font-size="24" letter-spacing="1.5">Measured vendors: AWS, GitHub, Notion, PagerDuty, Cloudflare, more</text>
+</svg>

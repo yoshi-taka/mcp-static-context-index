@@ -1,0 +1,416 @@
+{
+  "vendor": "AWS",
+  "repoUrl": "https://github.com/awslabs/mcp",
+  "packagePrefix": "awslabs",
+  "transport": "stdio",
+  "defaultCommand": "uvx",
+  "defaultEnv": {
+    "FASTMCP_LOG_LEVEL": "ERROR"
+  },
+  "servers": [
+    {
+      "id": "amazon-bedrock-agentcore",
+      "package": "awslabs.amazon-bedrock-agentcore-mcp-server",
+      "category": "AI & Machine Learning",
+      "authMode": "aws_or_service_auth"
+    },
+    {
+      "id": "amazon-kendra-index",
+      "package": "awslabs.amazon-kendra-index-mcp-server",
+      "category": "Search & Analytics",
+      "authMode": "aws_credentials"
+    },
+    {
+      "id": "amazon-keyspaces",
+      "package": "awslabs.amazon-keyspaces-mcp-server",
+      "category": "SQL & NoSQL Databases",
+      "authMode": "aws_credentials"
+    },
+    {
+      "id": "amazon-mq",
+      "package": "awslabs.amazon-mq-mcp-server",
+      "category": "Integration & Messaging",
+      "authMode": "aws_credentials"
+    },
+    {
+      "id": "amazon-neptune",
+      "package": "awslabs.amazon-neptune-mcp-server",
+      "category": "SQL & NoSQL Databases",
+      "authMode": "aws_credentials"
+    },
+    {
+      "id": "amazon-qbusiness-anonymous",
+      "package": "awslabs.amazon-qbusiness-anonymous-mcp-server",
+      "category": "AI & Machine Learning",
+      "authMode": "service_specific"
+    },
+    {
+      "id": "amazon-qindex",
+      "package": "awslabs.amazon-qindex-mcp-server",
+      "category": "AI & Machine Learning",
+      "authMode": "service_specific"
+    },
+    {
+      "id": "amazon-sns-sqs",
+      "package": "awslabs.amazon-sns-sqs-mcp-server",
+      "category": "Integration & Messaging",
+      "authMode": "aws_credentials"
+    },
+    {
+      "id": "aurora-dsql",
+      "package": "awslabs.aurora-dsql-mcp-server",
+      "category": "SQL & NoSQL Databases",
+      "authMode": "aws_credentials"
+    },
+    {
+      "id": "aws-api",
+      "package": "awslabs.aws-api-mcp-server",
+      "category": "Developer Tools & Support",
+      "authMode": "aws_credentials"
+    },
+    {
+      "id": "aws-appsync",
+      "package": "awslabs.aws-appsync-mcp-server",
+      "category": "Application Development",
+      "authMode": "aws_credentials"
+    },
+    {
+      "id": "aws-bedrock-custom-model-import",
+      "package": "awslabs.aws-bedrock-custom-model-import-mcp-server",
+      "category": "AI & Machine Learning",
+      "authMode": "aws_credentials"
+    },
+    {
+      "id": "aws-bedrock-data-automation",
+      "package": "awslabs.aws-bedrock-data-automation-mcp-server",
+      "category": "AI & Machine Learning",
+      "authMode": "aws_credentials"
+    },
+    {
+      "id": "aws-dataprocessing",
+      "package": "awslabs.aws-dataprocessing-mcp-server",
+      "category": "Data Operations & ETL",
+      "authMode": "aws_credentials"
+    },
+    {
+      "id": "aws-diagram",
+      "package": "awslabs.aws-diagram-mcp-server",
+      "category": "Infrastructure as Code",
+      "authMode": "none_or_local"
+    },
+    {
+      "id": "aws-documentation",
+      "package": "awslabs.aws-documentation-mcp-server",
+      "category": "Knowledge & Search",
+      "authMode": "none",
+      "measured": true
+    },
+    {
+      "id": "aws-healthomics",
+      "package": "awslabs.aws-healthomics-mcp-server",
+      "category": "Healthcare & Lifesciences",
+      "authMode": "aws_credentials"
+    },
+    {
+      "id": "aws-iac",
+      "package": "awslabs.aws-iac-mcp-server",
+      "category": "Infrastructure as Code",
+      "authMode": "aws_credentials"
+    },
+    {
+      "id": "aws-iot-sitewise",
+      "package": "awslabs.aws-iot-sitewise-mcp-server",
+      "category": "Integration & Messaging",
+      "authMode": "aws_credentials"
+    },
+    {
+      "id": "aws-knowledge",
+      "package": "awslabs.aws-knowledge-mcp-server",
+      "category": "Knowledge & Search",
+      "authMode": "aws_credentials"
+    },
+    {
+      "id": "aws-location",
+      "package": "awslabs.aws-location-mcp-server",
+      "category": "Application Development",
+      "authMode": "aws_credentials"
+    },
+    {
+      "id": "aws-msk",
+      "package": "awslabs.aws-msk-mcp-server",
+      "category": "Integration & Messaging",
+      "authMode": "aws_credentials"
+    },
+    {
+      "id": "aws-network",
+      "package": "awslabs.aws-network-mcp-server",
+      "category": "Infrastructure & Deployment",
+      "authMode": "aws_credentials"
+    },
+    {
+      "id": "aws-pricing",
+      "package": "awslabs.aws-pricing-mcp-server",
+      "category": "Cost & Operations",
+      "authMode": "aws_credentials"
+    },
+    {
+      "id": "aws-serverless",
+      "package": "awslabs.aws-serverless-mcp-server",
+      "category": "Serverless & Functions",
+      "authMode": "aws_credentials",
+      "measured": true
+    },
+    {
+      "id": "aws-support",
+      "package": "awslabs.aws-support-mcp-server",
+      "category": "Support",
+      "authMode": "aws_credentials"
+    },
+    {
+      "id": "bedrock-kb-retrieval",
+      "package": "awslabs.bedrock-kb-retrieval-mcp-server",
+      "category": "AI & Machine Learning",
+      "authMode": "aws_credentials"
+    },
+    {
+      "id": "billing-cost-management",
+      "package": "awslabs.billing-cost-management-mcp-server",
+      "category": "Cost & Operations",
+      "authMode": "aws_credentials"
+    },
+    {
+      "id": "ccapi",
+      "package": "awslabs.ccapi-mcp-server",
+      "category": "Infrastructure & Deployment",
+      "authMode": "aws_credentials"
+    },
+    {
+      "id": "cdk",
+      "package": "awslabs.cdk-mcp-server",
+      "category": "Infrastructure as Code",
+      "authMode": "aws_credentials"
+    },
+    {
+      "id": "cfn",
+      "package": "awslabs.cfn-mcp-server",
+      "category": "Infrastructure as Code",
+      "authMode": "aws_credentials"
+    },
+    {
+      "id": "cloudtrail",
+      "package": "awslabs.cloudtrail-mcp-server",
+      "category": "Operations & Monitoring",
+      "authMode": "aws_credentials"
+    },
+    {
+      "id": "cloudwatch-applicationsignals",
+      "package": "awslabs.cloudwatch-applicationsignals-mcp-server",
+      "category": "Operations & Monitoring",
+      "authMode": "aws_credentials"
+    },
+    {
+      "id": "cloudwatch",
+      "package": "awslabs.cloudwatch-mcp-server",
+      "category": "Operations & Monitoring",
+      "authMode": "aws_credentials"
+    },
+    {
+      "id": "code-doc-gen",
+      "package": "awslabs.code-doc-gen-mcp-server",
+      "category": "Developer Tools & Support",
+      "authMode": "none_or_local"
+    },
+    {
+      "id": "core",
+      "package": "awslabs.core-mcp-server",
+      "category": "Core Development Workflow",
+      "authMode": "none_or_local"
+    },
+    {
+      "id": "cost-explorer",
+      "package": "awslabs.cost-explorer-mcp-server",
+      "category": "Cost & Operations",
+      "authMode": "aws_credentials"
+    },
+    {
+      "id": "document-loader",
+      "package": "awslabs.document-loader-mcp-server",
+      "category": "Content Processing & Generation",
+      "authMode": "none_or_local"
+    },
+    {
+      "id": "documentdb",
+      "package": "awslabs.documentdb-mcp-server",
+      "category": "SQL & NoSQL Databases",
+      "authMode": "aws_credentials"
+    },
+    {
+      "id": "dynamodb",
+      "package": "awslabs.dynamodb-mcp-server",
+      "category": "SQL & NoSQL Databases",
+      "authMode": "aws_credentials"
+    },
+    {
+      "id": "ecs",
+      "package": "awslabs.ecs-mcp-server",
+      "category": "Container Platforms",
+      "authMode": "aws_credentials"
+    },
+    {
+      "id": "eks",
+      "package": "awslabs.eks-mcp-server",
+      "category": "Container Platforms",
+      "authMode": "aws_credentials"
+    },
+    {
+      "id": "elasticache",
+      "package": "awslabs.elasticache-mcp-server",
+      "category": "Caching & Performance",
+      "authMode": "aws_credentials"
+    },
+    {
+      "id": "finch",
+      "package": "awslabs.finch-mcp-server",
+      "category": "Container Platforms",
+      "authMode": "none_or_local"
+    },
+    {
+      "id": "frontend",
+      "package": "awslabs.frontend-mcp-server",
+      "category": "Application Development",
+      "authMode": "none_or_local"
+    },
+    {
+      "id": "git-repo-research",
+      "package": "awslabs.git-repo-research-mcp-server",
+      "category": "Developer Tools & Support",
+      "authMode": "none_or_local"
+    },
+    {
+      "id": "healthimaging",
+      "package": "awslabs.healthimaging-mcp-server",
+      "category": "Healthcare & Lifesciences",
+      "authMode": "aws_credentials"
+    },
+    {
+      "id": "healthlake",
+      "package": "awslabs.healthlake-mcp-server",
+      "category": "Healthcare & Lifesciences",
+      "authMode": "aws_credentials"
+    },
+    {
+      "id": "iam",
+      "package": "awslabs.iam-mcp-server",
+      "category": "Security & Identity",
+      "authMode": "aws_credentials"
+    },
+    {
+      "id": "lambda-tool",
+      "package": "awslabs.lambda-tool-mcp-server",
+      "category": "Serverless & Functions",
+      "authMode": "aws_credentials"
+    },
+    {
+      "id": "memcached",
+      "package": "awslabs.memcached-mcp-server",
+      "category": "Caching & Performance",
+      "authMode": "aws_credentials"
+    },
+    {
+      "id": "mysql",
+      "package": "awslabs.mysql-mcp-server",
+      "category": "SQL & NoSQL Databases",
+      "authMode": "service_specific"
+    },
+    {
+      "id": "nova-canvas",
+      "package": "awslabs.nova-canvas-mcp-server",
+      "category": "AI & Machine Learning",
+      "authMode": "aws_credentials"
+    },
+    {
+      "id": "openapi",
+      "package": "awslabs.openapi-mcp-server",
+      "category": "Developer Tools & Support",
+      "authMode": "none_or_local"
+    },
+    {
+      "id": "postgres",
+      "package": "awslabs.postgres-mcp-server",
+      "category": "SQL & NoSQL Databases",
+      "authMode": "service_specific"
+    },
+    {
+      "id": "prometheus",
+      "package": "awslabs.prometheus-mcp-server",
+      "category": "Operations & Monitoring",
+      "authMode": "service_specific"
+    },
+    {
+      "id": "redshift",
+      "package": "awslabs.redshift-mcp-server",
+      "category": "SQL & NoSQL Databases",
+      "authMode": "aws_credentials"
+    },
+    {
+      "id": "s3-tables",
+      "package": "awslabs.s3-tables-mcp-server",
+      "category": "Data & Analytics",
+      "authMode": "aws_credentials"
+    },
+    {
+      "id": "sagemaker-ai",
+      "package": "awslabs.sagemaker-ai-mcp-server",
+      "category": "AI & Machine Learning",
+      "authMode": "aws_credentials"
+    },
+    {
+      "id": "sagemaker-unified-studio-spark-troubleshooting",
+      "package": "awslabs.sagemaker-unified-studio-spark-troubleshooting-mcp-server",
+      "category": "Data Operations & ETL",
+      "authMode": "aws_credentials"
+    },
+    {
+      "id": "sagemaker-unified-studio-spark-upgrade",
+      "package": "awslabs.sagemaker-unified-studio-spark-upgrade-mcp-server",
+      "category": "Data Operations & ETL",
+      "authMode": "aws_credentials"
+    },
+    {
+      "id": "stepfunctions-tool",
+      "package": "awslabs.stepfunctions-tool-mcp-server",
+      "category": "Workflow & Integration",
+      "authMode": "aws_credentials"
+    },
+    {
+      "id": "syntheticdata",
+      "package": "awslabs.syntheticdata-mcp-server",
+      "category": "AI & Machine Learning",
+      "authMode": "aws_credentials"
+    },
+    {
+      "id": "terraform",
+      "package": "awslabs.terraform-mcp-server",
+      "category": "Infrastructure as Code",
+      "authMode": "aws_credentials"
+    },
+    {
+      "id": "timestream-for-influxdb",
+      "package": "awslabs.timestream-for-influxdb-mcp-server",
+      "category": "Data & Analytics",
+      "authMode": "aws_credentials"
+    },
+    {
+      "id": "valkey",
+      "package": "awslabs.valkey-mcp-server",
+      "category": "Caching & Performance",
+      "authMode": "aws_credentials"
+    },
+    {
+      "id": "well-architected-security",
+      "package": "awslabs.well-architected-security-mcp-server",
+      "category": "Security & Identity",
+      "authMode": "aws_credentials"
+    }
+  ]
+}

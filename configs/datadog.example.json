@@ -1,0 +1,15 @@
+{
+  "id": "datadog",
+  "name": "Datadog MCP Server",
+  "vendor": "Datadog",
+  "category": "Observability",
+  "repoUrl": "https://docs.datadoghq.com/bits_ai/mcp_server/",
+  "version": "remote",
+  "releasedAt": "2026-04-04",
+  "status": "measured",
+  "transport": {
+    "command": "datadog_mcp_cli",
+    "args": ["--site", "replace-me"],
+    "env": {}
+  }
+}

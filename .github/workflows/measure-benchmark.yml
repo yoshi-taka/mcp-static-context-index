@@ -1,0 +1,99 @@
+name: Measure Benchmark
+
+on:
+  workflow_dispatch:
+    inputs:
+      target:
+        description: "Benchmark target template"
+        required: true
+        type: choice
+        options:
+          - github-default
+          - github-default-actions-code-security
+          - github-all
+      version:
+        description: "Version label written into the dataset"
+        required: true
+        type: string
+      released_at:
+        description: "Release date in YYYY-MM-DD"
+        required: true
+        type: string
+      image_tag:
+        description: "GitHub MCP container tag"
+        required: true
+        type: string
+      notes:
+        description: "Benchmark notes"
+        required: false
+        type: string
+      publish_dataset:
+        description: "Open a PR with data/benchmarks.json updates"
+        required: true
+        default: false
+        type: boolean
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  measure:
+    runs-on: ubuntu-latest
+    env:
+      MCP_SERVER_VERSION: ${{ inputs.version }}
+      MCP_RELEASED_AT: ${{ inputs.released_at }}
+      GITHUB_MCP_IMAGE_TAG: ${{ inputs.image_tag }}
+      GITHUB_PERSONAL_ACCESS_TOKEN: ci-dummy-token
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: 1.3.11
+
+      - name: Install dependencies
+        run: bun install --frozen-lockfile
+
+      - name: Render CI config
+        run: >
+          bun run scripts/render-ci-config.ts
+          --template configs/ci/${{ inputs.target }}.json
+          --out .tmp/${{ inputs.target }}.json
+          --version ${{ inputs.version }}
+          --released-at ${{ inputs.released_at }}
+
+      - name: Collect snapshot
+        run: >
+          bun run scripts/collect.ts
+          --config .tmp/${{ inputs.target }}.json
+          --out .tmp/${{ inputs.target }}.snapshot.json
+
+      - name: Upload snapshot artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: snapshot-${{ inputs.target }}-${{ inputs.version }}
+          path: .tmp/${{ inputs.target }}.snapshot.json
+
+      - name: Update benchmark dataset
+        if: ${{ inputs.publish_dataset }}
+        run: >
+          bun run scripts/upsert-benchmark.ts
+          --snapshot .tmp/${{ inputs.target }}.snapshot.json
+          --data data/benchmarks.json
+          --notes "${{ inputs.notes || 'Measured by GitHub Actions benchmark workflow.' }}"
+
+      - name: Create pull request
+        if: ${{ inputs.publish_dataset }}
+        uses: peter-evans/create-pull-request@v7
+        with:
+          commit-message: "Update benchmark data for ${{ inputs.target }} ${{ inputs.version }}"
+          branch: ci/measure-${{ inputs.target }}-${{ inputs.version }}
+          title: "Update benchmark data for ${{ inputs.target }} ${{ inputs.version }}"
+          body: |
+            Automated benchmark update.
+
+            - Target: `${{ inputs.target }}`
+            - Version: `${{ inputs.version }}`
+            - Released at: `${{ inputs.released_at }}`
+            - Notes: `${{ inputs.notes || 'Measured by GitHub Actions benchmark workflow.' }}`

@@ -1,0 +1,31 @@
+{
+  "name": "mcp-context-pressure-index",
+  "version": "0.1.0",
+  "private": false,
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev --port 3001",
+    "build": "astro build",
+    "format": "oxfmt --write .",
+    "format:check": "oxfmt --check .",
+    "lint": "oxlint .",
+    "lint:fix": "oxlint . --fix",
+    "preview": "astro preview --port 3001",
+    "start": "astro dev --port 3001",
+    "deploy:cloudflare": "bunx wrangler@4 deploy",
+    "collect": "bun run scripts/collect.ts",
+    "collect:mock": "bun run scripts/collect.ts --config configs/mock-server.json --out snapshots/mock-server.json",
+    "generate:aws-config": "bun run scripts/generate-aws-config.ts",
+    "mock:mcp": "bun run scripts/mock-mcp-server.ts",
+    "render:ci-config": "bun run scripts/render-ci-config.ts",
+    "upsert:benchmark": "bun run scripts/upsert-benchmark.ts"
+  },
+  "dependencies": {
+    "astro": "^6.1.3",
+    "js-tiktoken": "^1.0.21"
+  },
+  "devDependencies": {
+    "oxfmt": "^0.43.0",
+    "oxlint": "^1.58.0"
+  }
+}
