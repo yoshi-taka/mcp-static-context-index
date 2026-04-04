@@ -1,8 +1,10 @@
 import { defineConfig } from "astro/config";
+import sitemap from "@astrojs/sitemap";
 
 export default defineConfig({
   output: "static",
-  site: process.env.SITE_URL || undefined,
+  site: "https://mcpindex.veritycost.com",
+  integrations: [sitemap()],
   server: {
     port: 3001,
   },

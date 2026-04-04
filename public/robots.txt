@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://mcpindex.veritycost.com/sitemap-index.xml
