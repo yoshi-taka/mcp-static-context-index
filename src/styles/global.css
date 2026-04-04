@@ -675,3 +675,34 @@ h1 {
     padding: 12px;
   }
 }
+
+.github-corner {
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 20;
+  display: block;
+  width: 72px;
+  height: 72px;
+  opacity: 0.92;
+  transition: opacity 160ms ease;
+  line-height: 0;
+}
+
+.github-corner:hover,
+.github-corner:focus-visible {
+  opacity: 1;
+}
+
+.github-corner img {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+@media (max-width: 720px) {
+  .github-corner {
+    width: 60px;
+    height: 60px;
+  }
+}
