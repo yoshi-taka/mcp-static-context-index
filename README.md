@@ -38,6 +38,7 @@ bun run collect --config configs/pagerduty.example.json --out snapshots/pagerdut
 ```
 
 Official remote example configs are available for selected servers such as [configs/datadog.example.json](./configs/datadog.example.json). Datadog uses the official `datadog_mcp_cli` transport rather than generic `mcp-remote`, and the Datadog site should be selected explicitly with `--site`.
+The current dataset also includes official remote targets that are measurable without account authentication, such as Grep, alongside local measurement targets such as Stripe via API key and the Google Workspace Gemini CLI extension via pre-login static listing, plus manual OAuth targets such as Linear, PlanetScale, and Sentry.
 
 Upsert a snapshot into the benchmark dataset:
 

@@ -1161,6 +1161,45 @@
       ]
     },
     {
+      "id": "chrome-devtools",
+      "name": "Chrome DevTools MCP",
+      "vendor": "Google",
+      "category": "Browser Automation",
+      "repoUrl": "https://github.com/ChromeDevTools/chrome-devtools-mcp",
+      "status": "measured",
+      "history": [
+        {
+          "version": "0.21.0",
+          "releasedAt": "2026-04-05",
+          "toolCount": 29,
+          "totals": {
+            "staticTokens": 3949,
+            "instructionsTokens": 0,
+            "toolNameTokens": 67,
+            "toolDescriptionTokens": 507,
+            "inputSchemaTokens": 3375,
+            "promptTokens": 0,
+            "resourceTokens": 0
+          },
+          "heavyTools": [
+            {
+              "name": "emulate",
+              "tokens": 294
+            },
+            {
+              "name": "list_network_requests",
+              "tokens": 224
+            },
+            {
+              "name": "take_screenshot",
+              "tokens": 223
+            }
+          ],
+          "notes": "Measured on 2026-04-05 from Chrome DevTools MCP 0.21.0 with --no-usage-statistics. Static metadata listing succeeded without account authentication."
+        }
+      ]
+    },
+    {
       "id": "cloudflare-graphql",
       "name": "Cloudflare GraphQL MCP Server",
       "vendor": "Cloudflare",
@@ -1886,6 +1925,115 @@
       ]
     },
     {
+      "id": "google-analytics",
+      "name": "Google Analytics MCP Server",
+      "vendor": "Google",
+      "category": "Analytics",
+      "repoUrl": "https://github.com/googleanalytics/google-analytics-mcp",
+      "status": "measured",
+      "history": [
+        {
+          "version": "unknown",
+          "releasedAt": "2026-04-05",
+          "toolCount": 7,
+          "totals": {
+            "staticTokens": 6754,
+            "instructionsTokens": 0,
+            "toolNameTokens": 26,
+            "toolDescriptionTokens": 6380,
+            "inputSchemaTokens": 348,
+            "promptTokens": 0,
+            "resourceTokens": 0
+          },
+          "heavyTools": [
+            {
+              "name": "run_report",
+              "tokens": 3243
+            },
+            {
+              "name": "run_realtime_report",
+              "tokens": 3156
+            },
+            {
+              "name": "list_property_annotations",
+              "tokens": 113
+            }
+          ],
+          "notes": "Measured on 2026-04-05 from the official Google Analytics MCP server. Static metadata listing succeeded without configured ADC credentials in this measurement environment."
+        }
+      ]
+    },
+    {
+      "id": "google-workspace",
+      "name": "Google Workspace MCP Server",
+      "vendor": "Google",
+      "category": "Productivity",
+      "repoUrl": "https://github.com/gemini-cli-extensions/workspace",
+      "status": "measured",
+      "history": [
+        {
+          "version": "0.0.7",
+          "releasedAt": "2026-03-11",
+          "toolCount": 56,
+          "totals": {
+            "staticTokens": 7915,
+            "instructionsTokens": 0,
+            "toolNameTokens": 179,
+            "toolDescriptionTokens": 1263,
+            "inputSchemaTokens": 6473,
+            "promptTokens": 0,
+            "resourceTokens": 0
+          },
+          "heavyTools": [
+            {
+              "name": "calendar_createEvent",
+              "tokens": 1067
+            },
+            {
+              "name": "calendar_updateEvent",
+              "tokens": 486
+            },
+            {
+              "name": "gmail_batchModify",
+              "tokens": 294
+            }
+          ],
+          "notes": "Measured on 2026-04-05 from the official Google Workspace Gemini CLI extension server. Static metadata listing succeeded before Google account login; authentication is required later for tool execution."
+        }
+      ]
+    },
+    {
+      "id": "grep",
+      "name": "Grep MCP",
+      "vendor": "Grep",
+      "category": "Code Search",
+      "repoUrl": "https://mcp.grep.app",
+      "status": "measured",
+      "history": [
+        {
+          "version": "remote",
+          "releasedAt": "2026-04-05",
+          "toolCount": 1,
+          "totals": {
+            "staticTokens": 645,
+            "instructionsTokens": 0,
+            "toolNameTokens": 3,
+            "toolDescriptionTokens": 337,
+            "inputSchemaTokens": 305,
+            "promptTokens": 0,
+            "resourceTokens": 0
+          },
+          "heavyTools": [
+            {
+              "name": "searchGitHub",
+              "tokens": 645
+            }
+          ],
+          "notes": "Measured on 2026-04-05 from the official Grep remote MCP endpoint. Static metadata listing succeeded without account authentication."
+        }
+      ]
+    },
+    {
       "id": "healthimaging",
       "name": "Healthimaging MCP Server",
       "vendor": "AWS",
@@ -2437,6 +2585,45 @@
           },
           "heavyTools": [],
           "notes": "Measured on 2026-04-05 from Stepfunctions Tool MCP Server. Static metadata listing succeeded in a credentialed read-only measurement setup."
+        }
+      ]
+    },
+    {
+      "id": "stripe",
+      "name": "Stripe MCP",
+      "vendor": "Stripe",
+      "category": "Payments",
+      "repoUrl": "https://docs.stripe.com/mcp",
+      "status": "measured",
+      "history": [
+        {
+          "version": "remote",
+          "releasedAt": "2026-04-05",
+          "toolCount": 31,
+          "totals": {
+            "staticTokens": 6957,
+            "instructionsTokens": 0,
+            "toolNameTokens": 98,
+            "toolDescriptionTokens": 2765,
+            "inputSchemaTokens": 4069,
+            "promptTokens": 25,
+            "resourceTokens": 0
+          },
+          "heavyTools": [
+            {
+              "name": "search_stripe_resources",
+              "tokens": 1438
+            },
+            {
+              "name": "stripe_integration_recommender",
+              "tokens": 715
+            },
+            {
+              "name": "create_coupon",
+              "tokens": 393
+            }
+          ],
+          "notes": "Measured on 2026-04-05 from the official local Stripe MCP server using API-key-based startup. Static metadata listing succeeded with local stdio transport."
         }
       ]
     },

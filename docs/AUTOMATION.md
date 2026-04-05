@@ -19,6 +19,8 @@
 - Azure DevOps
 - LaunchDarkly
 - AWS Documentation
+- Grep
+- Google Workspace Gemini CLI extension (static listing before login)
 
 この class は `workflow_dispatch` で即時測定しやすく、安定した運用が見えたものだけ `schedule` に昇格させる。
 
@@ -26,7 +28,7 @@
 
 例:
 
-- Stripe
+- Stripe via local stdio + API key
 - 一部の vendor server
 
 この class は repository secrets を要求する。schedule を入れる場合でも、対象 server を明示し、secret の権限範囲を限定する。
@@ -38,6 +40,8 @@
 - Cloudflare GraphQL
 - Linear official remote
 - Datadog official remote via `datadog_mcp_cli`
+- Sentry official remote
+- PlanetScale official remote
 
 GitHub Actions に載せない。local で測定して snapshot artifact を人手レビューし、dataset 反映は PR ベースにする。
 
