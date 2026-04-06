@@ -1,3 +1,5 @@
+https://mcpindex.veritycost.com/
+
 # MCP Static Context Index
 
 Public benchmark for comparing the `static exposure` of MCP servers.

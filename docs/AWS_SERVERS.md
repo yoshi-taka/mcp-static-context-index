@@ -1,25 +1,25 @@
 # AWS MCP Servers
 
-`awslabs/mcp` は単一 server ではなく、用途別に分割された MCP server 群。
+`awslabs/mcp` is not a single MCP server. It is a family of specialized servers.
 
-この repo では AWS 全体を単一 entry に潰さず、server 単位で別々に扱う。
+This repo does not collapse AWS into one entry. AWS servers are measured and presented as separate benchmark entries.
 
-AWS server の catalog は [aws-catalog.json](/Users/as/var/localrepos/mcp-static-context-viewer/configs/aws-catalog.json) にまとめている。
+The AWS server catalog is maintained in [configs/aws-catalog.json](../configs/aws-catalog.json).
 
-個別 server の local config を作るには:
+To generate a local config for an individual AWS server:
 
 ```bash
 bun run generate:aws-config --id aws-pricing
 ```
 
-これで `configs/aws-pricing.local.json` が生成される。生成後に collector をその config へ向けて測定し、snapshot を dataset に upsert する。
+This creates `configs/aws-pricing.local.json`. After that, point the collector at the generated config, produce a snapshot, and upsert the snapshot into the benchmark dataset.
 
 ## Current AWS Measurements
 
 - measured AWS servers: `57`
-- 測定範囲は local package, vendor source, official remote を含む
+- coverage includes local packages, vendor source, and official remote endpoints
 
-軽い側の例:
+Examples on the lighter end:
 
 - `lambda-tool`: `29`
 - `stepfunctions-tool`: `31`
@@ -27,7 +27,7 @@ bun run generate:aws-config --id aws-pricing
 - `frontend`: `247`
 - `amazon-neptune`: `275`
 
-重い側の例:
+Examples on the heavier end:
 
 - `aws-dataprocessing`: `34730`
 - `aws-healthomics`: `31892`
@@ -35,27 +35,27 @@ bun run generate:aws-config --id aws-pricing
 - `aws-iot-sitewise`: `15565`
 - `cloudwatch-applicationsignals`: `15515`
 
-この差が示す通り、AWS MCP 群は「AWS だから重い/軽い」ではなく、server の役割と schema 構造で大きく変わる。
+The spread is the point: AWS MCP servers do not share one uniform footprint. Static cost varies sharply by server role and schema shape.
 
-補足:
+Notes:
 
-- `aws-knowledge` は official remote `https://knowledge-mcp.global.api.aws` から測定
-- `amazon-keyspaces` は upstream が Python `3.10`/`3.11` 前提なので、`uvx --python 3.11` で測定
+- `aws-knowledge` was measured from the official remote endpoint `https://knowledge-mcp.global.api.aws`
+- `amazon-keyspaces` currently assumes Python `3.10` or `3.11` upstream, so it was measured with `uvx --python 3.11`
 
 ## Catalog Notes
 
-- `authMode = none`: 無認証で listing しやすい
-- `authMode = aws_credentials`: AWS credentials が必要になりやすい
-- `authMode = service_specific`: DB endpoint や service token など追加前提がある
-- `authMode = none_or_local`: ローカル開発ワークフロー中心で listing 自体はしやすい可能性がある
+- `authMode = none`: metadata listing is usually easy without authentication
+- `authMode = aws_credentials`: AWS credentials are often required
+- `authMode = service_specific`: extra inputs such as DB endpoints or service tokens are required
+- `authMode = none_or_local`: the server is mainly aimed at local workflows and listing may still be easy
 
 ## Current Blocks
 
 - `openapi`
-  固定 spec を与えれば起動に進むが、Petstore sample では upstream package が Python `3.13` / FastMCP API mismatch で起動途中に自壊した。さらに tool surface が与えた spec に依存するため、公開 benchmark に入れるなら fixture 固定方針が要る。
+  It can start when given a fixed spec, but with the Petstore sample the upstream package failed during startup because of a Python `3.13` / FastMCP API mismatch. Its tool surface also depends on the input spec, so including it in the public benchmark would require a fixed fixture policy.
 - `sagemaker-unified-studio-spark-troubleshooting`
-  `mcp-proxy-for-aws` 経由で official remote には到達するが、この環境の `default` profile では `403 Forbidden`。事前の SageMaker Unified Studio setup と専用 role/profile が必要。
+  The official remote endpoint is reachable through `mcp-proxy-for-aws`, but this environment's `default` profile receives `403 Forbidden`. It requires prior SageMaker Unified Studio setup and a dedicated role/profile.
 - `sagemaker-unified-studio-spark-upgrade`
-  上と同じく official remote には到達するが `403 Forbidden`。事前セットアップ済みの role/profile が必要。
+  Same as above: the official remote endpoint is reachable, but the current environment receives `403 Forbidden`. It requires prior setup and a dedicated role/profile.
 
-この時点では、deprecated な package は公開 benchmark から外している。
+Deprecated packages are excluded from the public benchmark.

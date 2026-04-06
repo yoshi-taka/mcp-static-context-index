@@ -1,3 +1,5 @@
+https://mcpindex.veritycost.com/
+
 # MCP Static Context Index
 
 MCP server の `static exposure` を比較する公開ベンチマークです。
