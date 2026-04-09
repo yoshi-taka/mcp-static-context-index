@@ -181,6 +181,7 @@ const canonicalUrl = Astro.site
 const socialCardUrl = Astro.site
     ? new URL("/social-card.svg", Astro.site).toString()
     : null;
+const shouldLoadAnalytics = !import.meta.env.DEV;
 ---
 
 <html lang="en">
@@ -210,6 +211,25 @@ const socialCardUrl = Astro.site
             content="Public benchmark of MCP server static context footprint."
         />
         {socialCardUrl && <meta name="twitter:image" content={socialCardUrl} />}
+        {
+            shouldLoadAnalytics && (
+                <script
+                    is:inline
+                    async
+                    type="text/partytown"
+                    src="https://www.googletagmanager.com/gtag/js?id=G-NE357ERFJL"
+                ></script>
+            )
+        }
+        {
+            shouldLoadAnalytics && (
+                <script
+                    is:inline
+                    type="text/partytown"
+                    src="/js/gtag-init.js"
+                ></script>
+            )
+        }
     </head>
     <body>
         <a
@@ -221,6 +241,15 @@ const socialCardUrl = Astro.site
         >
             <img src="/github-corner-right.svg" alt="" />
         </a>
+        <nav class="top-links" aria-label="External links">
+            <a
+                href="https://veritycost.com/"
+                target="_blank"
+                rel="noreferrer noopener"
+            >
+                veritycost.com ↗
+            </a>
+        </nav>
 
         <main class="page-shell">
             <section class="hero">
@@ -1034,5 +1063,17 @@ const socialCardUrl = Astro.site
                 }
             </section>
         </main>
+        <footer class="site-footer">
+            <p>
+                Published by
+                <a
+                    href="https://veritycost.com/"
+                    target="_blank"
+                    rel="noreferrer noopener"
+                >
+                    veritycost.com
+                </a>
+            </p>
+        </footer>
     </body>
 </html>

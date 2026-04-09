@@ -9,3 +9,6 @@ docs/internal/
 configs/*.local.json
 snapshots/*.json
 !snapshots/.gitkeep
+
+# generated partytown assets
+public/~partytown/
