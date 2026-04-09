@@ -194,6 +194,45 @@
       ]
     },
     {
+      "id": "atlassian",
+      "name": "Atlassian MCP Server",
+      "vendor": "Atlassian",
+      "category": "Issue Tracking",
+      "repoUrl": "https://github.com/atlassian/atlassian-mcp-server",
+      "status": "measured",
+      "history": [
+        {
+          "version": "remote",
+          "releasedAt": "2026-04-10",
+          "toolCount": 37,
+          "totals": {
+            "staticTokens": 7754,
+            "instructionsTokens": 0,
+            "toolNameTokens": 184,
+            "toolDescriptionTokens": 454,
+            "inputSchemaTokens": 7116,
+            "promptTokens": 0,
+            "resourceTokens": 0
+          },
+          "heavyTools": [
+            {
+              "name": "createJiraIssue",
+              "tokens": 435
+            },
+            {
+              "name": "transitionJiraIssue",
+              "tokens": 401
+            },
+            {
+              "name": "addWorklogToJiraIssue",
+              "tokens": 367
+            }
+          ],
+          "notes": "Measured on 2026-04-10 from Atlassian MCP Server. Static metadata listing succeeded through browser-based OAuth in a Jira-accessible Atlassian Cloud environment."
+        }
+      ]
+    },
+    {
       "id": "aurora-dsql",
       "name": "Aurora DSQL MCP Server",
       "vendor": "AWS",
