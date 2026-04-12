@@ -1,0 +1,23 @@
+{
+  "id": "slack",
+  "name": "Slack MCP Server",
+  "vendor": "Slack",
+  "category": "Team Chat",
+  "repoUrl": "https://docs.slack.dev/ai/slack-mcp-server/",
+  "version": "remote",
+  "releasedAt": "2026-04-12",
+  "status": "measured",
+  "transport": {
+    "command": "npx",
+    "args": [
+      "-y",
+      "mcp-remote",
+      "https://mcp.slack.com/mcp",
+      "--transport",
+      "http-only",
+      "--static-oauth-client-info",
+      "{\"client_id\":\"replace-me\",\"client_secret\":\"replace-me\"}"
+    ],
+    "env": {}
+  }
+}

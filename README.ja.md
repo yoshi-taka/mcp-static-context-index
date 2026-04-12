@@ -39,6 +39,8 @@ bun run collect:mock
 bun run collect --config configs/pagerduty.example.json --out snapshots/pagerduty.json
 ```
 
+Slack 用の雛形は [configs/slack.example.json](./configs/slack.example.json) に追加しています。計測時の注意は [docs/SLACK_MCP.md](./docs/SLACK_MCP.md) を参照してください。
+
 snapshot を dataset に反映する:
 
 ```bash
