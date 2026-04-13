@@ -2558,7 +2558,7 @@
               "tokens": 6826
             }
           ],
-          "notes": "Measured on 2026-04-14 from PostHog MCP with all tools exposed via the official remote MCP endpoint. This broad tool surface is included as an upper-bound comparison case rather than a typical narrowed setup. PostHog's support for narrowing tool exposure by use case aligns well with emerging MCP best practices."
+          "notes": "Measured on 2026-04-14 from PostHog MCP with all tools exposed via the official remote MCP endpoint. This broad exposed tool surface is included as an upper-bound comparison case rather than a typical narrowed setup. PostHog's support for narrowing tool exposure by use case aligns well with emerging MCP best practices."
         }
       ]
     },
