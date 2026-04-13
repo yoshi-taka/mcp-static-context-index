@@ -1083,6 +1083,45 @@
       ]
     },
     {
+      "id": "bugsnag",
+      "name": "BugSnag via SmartBear MCP",
+      "vendor": "SmartBear",
+      "category": "Error Monitoring",
+      "repoUrl": "https://developer.smartbear.com/smartbear-mcp/docs/bugsnag-integration",
+      "status": "measured",
+      "history": [
+        {
+          "version": "remote",
+          "releasedAt": "2026-04-14",
+          "toolCount": 19,
+          "totals": {
+            "staticTokens": 11625,
+            "instructionsTokens": 271,
+            "toolNameTokens": 117,
+            "toolDescriptionTokens": 7323,
+            "inputSchemaTokens": 3914,
+            "promptTokens": 0,
+            "resourceTokens": 0
+          },
+          "heavyTools": [
+            {
+              "name": "bugsnag_list_project_errors",
+              "tokens": 1485
+            },
+            {
+              "name": "bugsnag_update_error",
+              "tokens": 1304
+            },
+            {
+              "name": "bugsnag_list_span_groups",
+              "tokens": 1046
+            }
+          ],
+          "notes": "Measured on 2026-04-14 from the Bugsnag integration exposed through SmartBear MCP. Static metadata listing succeeded with placeholder BugSnag credentials in this environment, and project scoping did not change the exposed tool surface in the same measurement setup."
+        }
+      ]
+    },
+    {
       "id": "ccapi",
       "name": "CCAPI MCP Server",
       "vendor": "AWS",
@@ -2485,6 +2524,123 @@
       ]
     },
     {
+      "id": "posthog",
+      "name": "PostHog MCP (all tools)",
+      "vendor": "PostHog",
+      "category": "Analytics",
+      "repoUrl": "https://posthog.com/docs/model-context-protocol",
+      "status": "measured",
+      "history": [
+        {
+          "version": "remote",
+          "releasedAt": "2026-04-14",
+          "toolCount": 183,
+          "totals": {
+            "staticTokens": 113843,
+            "instructionsTokens": 100,
+            "toolNameTokens": 689,
+            "toolDescriptionTokens": 10434,
+            "inputSchemaTokens": 99238,
+            "promptTokens": 0,
+            "resourceTokens": 3382
+          },
+          "heavyTools": [
+            {
+              "name": "alert-create",
+              "tokens": 7642
+            },
+            {
+              "name": "alert-update",
+              "tokens": 7609
+            },
+            {
+              "name": "survey-update",
+              "tokens": 6826
+            }
+          ],
+          "notes": "Measured on 2026-04-14 from PostHog MCP with all tools exposed via the official remote MCP endpoint. This broad tool surface is included as an upper-bound comparison case rather than a typical narrowed setup. PostHog's support for narrowing tool exposure by use case aligns well with emerging MCP best practices."
+        }
+      ]
+    },
+    {
+      "id": "posthog-feature-flags",
+      "name": "PostHog MCP (flags toolset)",
+      "vendor": "PostHog",
+      "category": "Analytics",
+      "repoUrl": "https://posthog.com/docs/model-context-protocol",
+      "status": "measured",
+      "history": [
+        {
+          "version": "remote",
+          "releasedAt": "2026-04-14",
+          "toolCount": 16,
+          "totals": {
+            "staticTokens": 11216,
+            "instructionsTokens": 100,
+            "toolNameTokens": 87,
+            "toolDescriptionTokens": 516,
+            "inputSchemaTokens": 7131,
+            "promptTokens": 0,
+            "resourceTokens": 3382
+          },
+          "heavyTools": [
+            {
+              "name": "update-feature-flag",
+              "tokens": 2266
+            },
+            {
+              "name": "create-feature-flag",
+              "tokens": 2241
+            },
+            {
+              "name": "scheduled-changes-create",
+              "tokens": 879
+            }
+          ],
+          "notes": "Measured on 2026-04-14 from PostHog MCP with feature filtering set to flags via the official remote MCP endpoint. This is a representative narrowed toolset example for release-control workflows, not an exhaustive or uniquely recommended PostHog configuration. The ability to intentionally narrow the exposed tool surface aligns well with emerging MCP best practices."
+        }
+      ]
+    },
+    {
+      "id": "posthog-insights",
+      "name": "PostHog MCP (insights toolset)",
+      "vendor": "PostHog",
+      "category": "Analytics",
+      "repoUrl": "https://posthog.com/docs/model-context-protocol",
+      "status": "measured",
+      "history": [
+        {
+          "version": "remote",
+          "releasedAt": "2026-04-14",
+          "toolCount": 7,
+          "totals": {
+            "staticTokens": 7853,
+            "instructionsTokens": 100,
+            "toolNameTokens": 23,
+            "toolDescriptionTokens": 317,
+            "inputSchemaTokens": 4031,
+            "promptTokens": 0,
+            "resourceTokens": 3382
+          },
+          "heavyTools": [
+            {
+              "name": "query-run",
+              "tokens": 3617
+            },
+            {
+              "name": "insight-update",
+              "tokens": 272
+            },
+            {
+              "name": "insight-create-from-query",
+              "tokens": 227
+            }
+          ],
+          "notes": "Measured on 2026-04-14 from PostHog MCP with feature filtering set to insights via the official remote MCP endpoint. This is a representative narrowed toolset example for analytics workflows, not an exhaustive or uniquely recommended PostHog configuration. The ability to intentionally narrow the exposed tool surface aligns well with emerging MCP best practices."
+        }
+      ]
+    },
+    {
       "id": "redshift",
       "name": "Redshift MCP Server",
       "vendor": "AWS",
@@ -2637,6 +2793,45 @@
             }
           ],
           "notes": "Measured on 2026-04-12 from Slack MCP Server via patched mcp-remote with Slack OAuth and an HTTPS callback tunnel."
+        }
+      ]
+    },
+    {
+      "id": "snyk",
+      "name": "Snyk MCP",
+      "vendor": "Snyk",
+      "category": "Security",
+      "repoUrl": "https://docs.snyk.io/integrations/developer-guardrails-for-agentic-workflows/snyk-mcp-installation-configuration-and-startup",
+      "status": "measured",
+      "history": [
+        {
+          "version": "remote",
+          "releasedAt": "2026-04-14",
+          "toolCount": 12,
+          "totals": {
+            "staticTokens": 5196,
+            "instructionsTokens": 0,
+            "toolNameTokens": 62,
+            "toolDescriptionTokens": 1272,
+            "inputSchemaTokens": 3862,
+            "promptTokens": 0,
+            "resourceTokens": 0
+          },
+          "heavyTools": [
+            {
+              "name": "snyk_sca_scan",
+              "tokens": 1738
+            },
+            {
+              "name": "snyk_iac_scan",
+              "tokens": 941
+            },
+            {
+              "name": "snyk_container_scan",
+              "tokens": 831
+            }
+          ],
+          "notes": "Measured on 2026-04-14 from Snyk MCP via Snyk CLI stdio transport. Static metadata listing succeeded with the official CLI MCP entrypoint."
         }
       ]
     },

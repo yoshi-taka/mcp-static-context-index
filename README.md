@@ -49,6 +49,8 @@ Upsert a snapshot into the benchmark dataset:
 bun run upsert:benchmark --snapshot snapshots/pagerduty.json --data data/benchmarks.json --notes "Measured from PagerDuty release X"
 ```
 
+Do not run multiple `upsert:benchmark` writes against `data/benchmarks.json` in parallel. The dataset update is a single-file rewrite and should be treated as a sequential step.
+
 The collector calls `initialize`, `tools/list`, `prompts/list`, and `resources/list`, normalizes the response into canonical JSON, and counts tokens from that static metadata.
 
 ## Repository Boundaries
