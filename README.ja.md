@@ -6,6 +6,8 @@ MCP server の `static exposure` を比較する公開ベンチマークです�
 
 この project は `runtime usage` ではなく、`instructions`、`tools`、`tool descriptions`、`tool input schemas`、`prompts`、`resources metadata` の `static definition cost` を同一条件で測ります。
 
+比較の baseline は、server に意味のある default mode がある場合は `default exposed surface` を優先します。これは多くの MCP client や agent runtime が server の tool surface を自動で都合よく絞ってくれるわけではなく、実際には default の `tools/list` がそのまま見えることが多いためです。server 側に明示的な絞り込み機構がある場合は、default baseline を置いたうえで narrowed profile を追加比較として扱います。
+
 AWS 系 server の扱いは [docs/AWS_SERVERS.md](./docs/AWS_SERVERS.md) を参照してください。英語の正本は [README.md](./README.md) です。
 
 ## Local

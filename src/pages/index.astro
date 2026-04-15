@@ -754,6 +754,16 @@ const shouldLoadAnalytics = !import.meta.env.DEV;
                         </p>
                     </article>
                     <article class="hero-card">
+                        <span class="hero-label">Baseline</span>
+                        <strong>Default surface first.</strong>
+                        <p>
+                            The baseline uses the default exposed tool surface
+                            when a server has one. Narrowed profiles are useful,
+                            but they are treated as extra comparison cases rather
+                            than a replacement for the default.
+                        </p>
+                    </article>
+                    <article class="hero-card">
                         <span class="hero-label">Data status</span>
                         <strong
                             >{
@@ -805,6 +815,12 @@ const shouldLoadAnalytics = !import.meta.env.DEV;
                         <strong>Auth caveat:</strong> some servers expose metadata
                         with dummy credentials, some require real credentials, and
                         some require manual OAuth in a browser.
+                    </p>
+                    <p>
+                        <strong>Default-first baseline:</strong> most MCP clients
+                        and agent hosts do not automatically trim a server's
+                        exposed tool surface, so default `tools/list` output is
+                        usually the most realistic comparison point.
                     </p>
                     <p>
                         <strong>Interpretation:</strong> a high token count does not

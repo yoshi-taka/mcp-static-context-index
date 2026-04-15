@@ -2081,6 +2081,45 @@
       ]
     },
     {
+      "id": "grafana",
+      "name": "Grafana MCP Server",
+      "vendor": "Grafana",
+      "category": "Observability",
+      "repoUrl": "https://github.com/grafana/mcp-grafana",
+      "status": "measured",
+      "history": [
+        {
+          "version": "remote",
+          "releasedAt": "2026-04-16",
+          "toolCount": 50,
+          "totals": {
+            "staticTokens": 12251,
+            "instructionsTokens": 297,
+            "toolNameTokens": 194,
+            "toolDescriptionTokens": 3098,
+            "inputSchemaTokens": 8662,
+            "promptTokens": 0,
+            "resourceTokens": 0
+          },
+          "heavyTools": [
+            {
+              "name": "alerting_manage_rules",
+              "tokens": 2019
+            },
+            {
+              "name": "update_dashboard",
+              "tokens": 820
+            },
+            {
+              "name": "query_loki_logs",
+              "tokens": 470
+            }
+          ],
+          "notes": "Measured on 2026-04-16 from grafana/mcp-grafana v0.11.6 via uvx using placeholder Grafana Cloud URL and dummy token. Static metadata listing succeeded despite datasource discovery warnings returning HTTP 530 during startup."
+        }
+      ]
+    },
+    {
       "id": "grep",
       "name": "Grep MCP",
       "vendor": "Grep",

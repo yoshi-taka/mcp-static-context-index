@@ -1,0 +1,18 @@
+{
+  "id": "grafana",
+  "name": "Grafana MCP Server",
+  "vendor": "Grafana",
+  "category": "Observability",
+  "repoUrl": "https://github.com/grafana/mcp-grafana",
+  "version": "remote",
+  "releasedAt": "2026-04-16",
+  "status": "measured",
+  "transport": {
+    "command": "uvx",
+    "args": ["mcp-grafana"],
+    "env": {
+      "GRAFANA_URL": "https://your-stack.grafana.net",
+      "GRAFANA_SERVICE_ACCOUNT_TOKEN": "replace-me"
+    }
+  }
+}

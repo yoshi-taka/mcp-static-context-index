@@ -6,6 +6,8 @@ Public benchmark for comparing the `static exposure` of MCP servers.
 
 This project measures `static definition cost` under consistent conditions across MCP servers. It does not claim to represent the exact number of tokens injected into a model at runtime. The benchmark focuses on `instructions`, `tools`, `tool descriptions`, `tool input schemas`, `prompts`, and `resources metadata`.
 
+The benchmark treats `default exposed surface` as the baseline whenever a server has a meaningful default mode. This is intentional: most MCP clients and agent runtimes do not automatically narrow a server's tool surface for you, so the default `tools/list` result is often the most realistic comparison point. When a server also supports explicit narrowing, that narrowed profile may be included as an additional comparison case rather than replacing the default baseline.
+
 For AWS-specific server handling, see [docs/AWS_SERVERS.md](./docs/AWS_SERVERS.md). A Japanese overview is available in [README.ja.md](./README.ja.md).
 
 ## Local Development
@@ -40,6 +42,7 @@ bun run collect --config configs/pagerduty.example.json --out snapshots/pagerdut
 ```
 
 Official remote example configs are available for selected servers such as [configs/datadog.example.json](./configs/datadog.example.json). Datadog uses the official `datadog_mcp_cli` transport rather than generic `mcp-remote`, and the Datadog site should be selected explicitly with `--site`.
+Grafana is available as [configs/grafana.example.json](./configs/grafana.example.json). The official `grafana/mcp-grafana` server can be run with `uvx mcp-grafana` and requires `GRAFANA_URL` plus a service account token.
 Slack is available as [configs/slack.example.json](./configs/slack.example.json). Measurement-specific notes live in [docs/SLACK_MCP.md](./docs/SLACK_MCP.md).
 The current dataset also includes official remote targets that are measurable without account authentication, such as Grep, alongside local measurement targets such as Stripe via API key and the Google Workspace Gemini CLI extension via pre-login static listing, plus manual OAuth targets such as Linear, PlanetScale, and Sentry.
 
