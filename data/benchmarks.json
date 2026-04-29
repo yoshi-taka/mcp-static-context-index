@@ -2229,6 +2229,45 @@
       ]
     },
     {
+      "id": "honeycomb",
+      "name": "Honeycomb MCP Server",
+      "vendor": "Honeycomb",
+      "category": "Observability",
+      "repoUrl": "https://docs.honeycomb.io/integrations/mcp",
+      "status": "measured",
+      "history": [
+        {
+          "version": "remote",
+          "releasedAt": "2026-04-04",
+          "toolCount": 18,
+          "totals": {
+            "staticTokens": 9357,
+            "instructionsTokens": 241,
+            "toolNameTokens": 49,
+            "toolDescriptionTokens": 1357,
+            "inputSchemaTokens": 7536,
+            "promptTokens": 174,
+            "resourceTokens": 0
+          },
+          "heavyTools": [
+            {
+              "name": "run_query",
+              "tokens": 4682
+            },
+            {
+              "name": "create_board",
+              "tokens": 835
+            },
+            {
+              "name": "get_trace",
+              "tokens": 540
+            }
+          ],
+          "notes": "Measured from Honeycomb MCP server via OAuth (mcp-remote bridge)."
+        }
+      ]
+    },
+    {
       "id": "iam",
       "name": "IAM MCP Server",
       "vendor": "AWS",

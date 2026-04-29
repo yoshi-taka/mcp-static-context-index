@@ -1,0 +1,19 @@
+{
+  "id": "honeycomb",
+  "name": "Honeycomb MCP Server",
+  "vendor": "Honeycomb",
+  "category": "Observability",
+  "repoUrl": "https://docs.honeycomb.io/integrations/mcp",
+  "version": "remote",
+  "releasedAt": "2026-04-04",
+  "status": "measured",
+  "transport": {
+    "command": "npx",
+    "args": [
+      "-y",
+      "mcp-remote",
+      "https://mcp.honeycomb.io/mcp"
+    ],
+    "env": {}
+  }
+}
